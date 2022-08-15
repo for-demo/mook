@@ -6,7 +6,6 @@
 - [tag list page](https://for-demo.github.io/mook/tagList)
 - [article page](https://for-demo.github.io/mook/article)
 - [search list page](https://for-demo.github.io/mook/searchList)
-- [search list page](https://for-demo.github.io/mook/searchList)
 - [about page](https://for-demo.github.io/mook/about)
 - [copyright page](https://for-demo.github.io/mook/copyright)
 - [privacy page](https://for-demo.github.io/mook/privacy)
