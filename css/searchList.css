@@ -651,9 +651,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .aspect-\[125\/83\] {
   aspect-ratio: 125 / 83;
 }
-.aspect-\[157\/100\] {
-  aspect-ratio: 157 / 100;
-}
 .aspect-\[390\/100\] {
   aspect-ratio: 390 / 100;
 }
@@ -752,9 +749,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-w-\[125px\] {
   max-width: 125px;
-}
-.max-w-\[157px\] {
-  max-width: 157px;
 }
 .flex-auto {
   flex: 1 1 auto;
@@ -1290,12 +1284,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
-.line-clamp-3 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
 /* 基礎共用 */
 .before\:absolute::before {
   content: var(--tw-content);
@@ -1455,10 +1443,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:mb-6 {
     margin-bottom: 1.5rem;
-  }
-
-  .xl\:mt-10 {
-    margin-top: 2.5rem;
   }
 
   .xl\:block {
@@ -1689,11 +1673,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 18px;
   }
 
-  .xl\:py-2 {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-
   .xl\:pt-4 {
     padding-top: 1rem;
   }
@@ -1759,13 +1738,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:leading-\[32px\] {
     line-height: 32px;
-  }
-
-  .xl\:line-clamp-2 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
   }
 
   .xl\:line-clamp-3 {
