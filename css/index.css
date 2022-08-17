@@ -1667,10 +1667,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     flex-wrap: wrap;
   }
 
-  .xl\:items-start {
-    align-items: flex-start;
-  }
-
   .xl\:justify-between {
     justify-content: space-between;
   }
