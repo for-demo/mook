@@ -690,8 +690,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[236px\] {
   height: 236px;
 }
+.h-\[48px\] {
+  height: 48px;
+}
 .h-\[22px\] {
   height: 22px;
+}
+.max-h-\[100px\] {
+  max-height: 100px;
 }
 .w-9 {
   width: 2.25rem;
@@ -761,6 +767,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-w-\[125px\] {
   max-width: 125px;
+}
+.max-w-\[390px\] {
+  max-width: 390px;
 }
 .flex-auto {
   flex: 1 1 auto;
@@ -1535,6 +1544,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: auto;
   }
 
+  .xl\:max-h-\[120px\] {
+    max-height: 120px;
+  }
+
   .xl\:min-h-\[calc\(100vh-292px\)\] {
     min-height: calc(100vh - 292px);
   }
@@ -1585,6 +1598,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:max-w-\[120px\] {
     max-width: 120px;
+  }
+
+  .xl\:max-w-\[1100px\] {
+    max-width: 1100px;
   }
 
   .xl\:flex-initial {
