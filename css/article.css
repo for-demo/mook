@@ -459,6 +459,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .container {
   width: 100%;
 }
+@media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
 @media (min-width: 1100px) {
 
   .container {
@@ -1577,10 +1583,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     aspect-ratio: 970 / 250;
   }
 
-  .xl\:aspect-\[1100\/425\] {
-    aspect-ratio: 1100 / 425;
-  }
-
   .xl\:aspect-\[345\/230\] {
     aspect-ratio: 345 / 230;
   }
@@ -1902,6 +1904,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   .hover\:xl\:border-b-primary-dark:hover {
     --tw-border-opacity: 1;
     border-bottom-color: rgb(235 99 92 / var(--tw-border-opacity));
+  }
+}
+@media (min-width: 640px) {
+
+  .sm\:aspect-\[1100\/425\] {
+    aspect-ratio: 1100 / 425;
   }
 }
 
