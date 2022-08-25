@@ -372,9 +372,9 @@
           </button>
         </div>
         <div
-          class="splide__track xl:w-auto w-full xl:!overflow-hidden !overflow-y-auto xl:h-auto h-[calc(100vh-56px)] relative"
+          class="splide__track xl:w-auto w-full relative"
         >
-          <ul class="splide__list">
+          <ul class="splide__list  xl:!overflow-hidden !overflow-y-auto xl:h-auto h-[calc(100vh-56px)]">
             <!-- tag, active 效果加上 !text-primary-dark (可跑迴圈) -->
             <li class="splide__slide navItem xl:px-0 px-8">
               <a
@@ -475,6 +475,7 @@
               </a>
             </li>
             <li
+              style="align-self: stretch"
               class="xl:hidden flex items-center justify-center space-x-6 py-[6px] sticky bottom-0 bg-primary-dark w-full"
             >
               <!-- Facebook -->
