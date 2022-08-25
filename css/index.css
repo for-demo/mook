@@ -1821,6 +1821,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 1rem;
   }
 
+  .xl\:pr-5 {
+    padding-right: 1.25rem;
+  }
+
   .xl\:pb-\[72px\] {
     padding-bottom: 72px;
   }
