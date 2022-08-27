@@ -316,7 +316,7 @@
     </div>
     <div
       id="navbarWrapper"
-      class="xl:visible invisible !border-b border-gray-200 xl:mt-[80px] mt-[56px] xl:bg-white bg-light xl:static fixed top-0 right-0 xl:w-auto w-4/5 z-20 xl:duration-0 duration-200 xl:translate-x-0 translate-x-full xl:before:content-none before:content-[''] before:w-screen before:h-full before:absolute before:inset-0"
+      class="xl:visible invisible !border-b border-gray-200 xl:mt-[80px] mt-0 xl:bg-white bg-light xl:static fixed top-0 right-0 xl:w-auto w-4/5 z-20 xl:duration-0 duration-200 xl:translate-x-0 translate-x-full xl:before:content-none before:content-[''] before:w-screen before:h-full before:absolute before:inset-0"
     >
       <!-- navbar -->
       <div class="navbar splide max-w-[1100px] mx-auto flex items-center">
@@ -372,9 +372,11 @@
           </button>
         </div>
         <div
-          class="splide__track xl:w-auto w-full relative xl:!overflow-hidden !overflow-y-auto"
+          class="splide__track xl:w-auto w-full xl:!overflow-hidden !overflow-y-auto xl:h-auto h-full"
         >
-          <ul class="splide__list  xl:!overflow-hidden !overflow-y-auto xl:h-auto h-[calc(100vh-56px)]">
+          <ul
+            class="splide__list xl:!pt-0 !pt-14 xl:!pb-0 !pb-[44px] xl:!overflow-y-visible !overflow-y-auto xl:h-auto h-[calc(100vh-56px)]"
+          >
             <!-- tag, active 效果加上 !text-primary-dark (可跑迴圈) -->
             <li class="splide__slide navItem xl:px-0 px-8">
               <a
@@ -474,9 +476,24 @@
                 <span class="xl:px-5 inline-block">12. 熱話題</span>
               </a>
             </li>
+            <li class="splide__slide navItem xl:px-0 px-8">
+              <a
+                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
+                href="#"
+              >
+                <span class="xl:px-5 inline-block">13. 熱話題</span>
+              </a>
+            </li>
+            <li class="splide__slide navItem xl:px-0 px-8">
+              <a
+                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
+                href="#"
+              >
+                <span class="xl:px-5 inline-block">14. 熱話題</span>
+              </a>
+            </li>
             <li
-              style="align-self: stretch"
-              class="xl:hidden flex items-center justify-center space-x-6 py-[6px] sticky bottom-0 bg-primary-dark w-full"
+              class="xl:hidden flex items-center justify-center space-x-6 py-[6px] absolute bottom-0 bg-primary-dark w-full"
             >
               <!-- Facebook -->
               <a
