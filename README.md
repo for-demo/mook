@@ -1,8 +1,9 @@
 # mook
 
 ## 頁面
-- [home page](https://for-demo.github.io/mook/)
-- [list page](https://for-demo.github.io/mook/list)
+- [home page](https://for-demo.github.io/mook/) (原 mook)
+- [travelplus page](https://for-demo.github.io/mook/travelplus) (原 index)
+- [category page](https://for-demo.github.io/mook/category) (原 list)
 - [tag list page](https://for-demo.github.io/mook/tagList)
 - [article page](https://for-demo.github.io/mook/article)
 - [search list page](https://for-demo.github.io/mook/searchList)
@@ -12,6 +13,7 @@
 
 ## 用到的套件
 - [輪播套件 - splidejs](https://splidejs.com/)
+- [視差滾動套件 - aosjs](https://michalsnik.github.io/aos/)
 
 ## 備註
 - 註解地方有(可跑迴圈)，代表是可重複的組件，可拿來跑迴圈用

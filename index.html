@@ -1,246 +1,423 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
-  <script defer src="js/index.js"></script><link href="css/index.css" rel="stylesheet"></head>
-
+    <title>Mook Page</title>
+    <link href="./plugins/splide.min.css" rel="stylesheet" />
+    <link href="./plugins/aos.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="./plugins/splide.min.js"></script>
+    <script src="./plugins/aos.js"></script>
+    <script defer src="js/index.js"></script>
+  </head>
   <body>
-    <h1 class="sr-only">景點+</h1>
     <!-- header -->
-    <header class="bg-white">
-  <div class="grid grid-cols-1">
-    <div class="fixed top-0 w-full z-50 bg-white border border-gray-200">
-      <div
-        class="max-w-[1100px] mx-auto flex justify-between xl:pt-4 xl:pb-4 xl:px-0 px-4 py-3"
-      >
+    <header
+      id="header"
+      class="fixed w-full top-0 flex justify-between items-center xl:px-10 xl:py-6 px-4 pt-[10px] pb-3 z-30 duration-200"
+    >
+      <img
+        class="logo xl:!max-w-[249px] !max-w-[100px] duration-200"
+        src="./images/icon/Logo_Mook.svg"
+        alt=""
+      />
+      <button id="memuButton" class="memu relative xl:hidden" type="button">
         <div
-          class="flex xl:space-x-[34px] items-center justify-between xl:w-auto w-full"
+          id="menuIcon"
+          class="menuIcon justify-center space-y-[6px] flex flex-col relative w-auto h-6 overflow-hidden"
         >
-          <a
-            class="inline-block xl:max-w-[110px] max-w-[88px]"
-            href="https://www.mook.com.tw/"
-            target="_blank"
-          >
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAyIiBoZWlnaHQ9Ijc0IiB2aWV3Qm94PSIwIDAgMjAyIDc0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTE5NS40NjIgMTEuNzMyaC02LjAzOVY1LjczYTIuODQgMi44NCAwIDAgMC0yLjg2LTIuODQzIDIuODQgMi44NCAwIDAgMC0yLjg2MSAyLjg0M3Y2aC02LjAzOGEyLjg0IDIuODQgMCAwIDAtMi44NjEgMi44NDMgMi44NCAyLjg0IDAgMCAwIDIuODYxIDIuODQzaDYuMDM4djYuMDAxYTIuODQgMi44NCAwIDAgMCAyLjg2MSAyLjg0MyAyLjg0IDIuODQgMCAwIDAgMi44Ni0yLjg0M3YtNmg2LjAzOWEyLjg0IDIuODQgMCAwIDAgMi44Ni0yLjg0NCAyLjg0IDIuODQgMCAwIDAtMi44Ni0yLjg0MnoiIGZpbGw9IiNGMjlDOTciLz4KICAgIDxwYXRoIGQ9Ik03MC45MiA1Ny42MmMtLjQ1NCAwLS45MDguMDkxLTEuMzYyLjI3Mi0uNDU0LjE4LTEuMDkuNDk2LTEuOTA3LjkwMmEzOC4yODkgMzguMjg5IDAgMCAxLTQuNTQgMi4xMmMtMS4wOS40NTItMi44NiAxLjAzOC01LjI2NyAxLjc2LTEuNzcuNTQyLTIuNjc5IDEuNDQ0LTIuNjc5IDIuNzA4IDAgMS43Ni44MTcgMi42NjIgMi40NTIgMi42NjIgMS4xOCAwIDQuMDg2LTEuMDM4IDguNTM2LTMuMTU5IDQuNTQtMi4xMiA2Ljc2NS0zLjg4IDYuNzY1LTUuMzI0IDAtLjU0MS0uMTgyLTEuMDM4LS41OS0xLjM5OWEyLjAzNyAyLjAzNyAwIDAgMC0xLjQwOC0uNTQxek0xMDguMTk2IDYzLjYyMmMtLjYzNS0uNDUxLTEuNTg5LS45MDMtMi45OTYtMS4zOTktMi45OTctMS4wMzgtNS4xMzEtMS44OTUtNi40NDgtMi41MjctMi40NTEtMS4yMTgtNC4xNzctMS44MDQtNS4xNzUtMS44MDRhMS45MiAxLjkyIDAgMCAwLTEuNDA4LjU4NmMtLjM2My40MDYtLjU0NS45MDItLjU0NSAxLjUzNHMuMjczIDEuMjE4Ljg2MyAxLjc2Yy41OS41NDEgMS40MDcgMS4xMjggMi41ODggMS43MTUgNS40NDggMi43OTcgOS4yNjIgNC4xOTYgMTEuNjY4IDQuMTk2IDEuNTkgMCAyLjQwNy0uODU3IDIuNDA3LTIuNTcyIDAtLjU0MS0uMzE4LTEuMDgzLS45NTQtMS40ODl6TTU3LjI1NCAzNi41NDljLTEuNTQ0IDAtMi4yNy42NzctMi4yNyAyLjA3NSAwIDEuMzU0LjcyNiAyLjAzIDIuMjcgMi4wM2g0OS44NTNjMS41ODkgMCAyLjM2MS0uNjc2IDIuMzYxLTIuMDMgMC0xLjM5OC0uNzcyLTIuMDc1LTIuMzYxLTIuMDc1aC0yMi40M1YzMy4zaDEzLjA3N2MxLjkwNy4xMzUgMy4yNjktLjI3IDQuMTc3LTEuMTczLjg2Mi0uOTAzIDEuMjI2LTIuMzAxIDEuMDg5LTQuMTUxVjIwLjI2Yy4xMzctMS45NC0uMjI3LTMuMzQtMS4wODktNC4yNDItLjg2My0uOTAyLTIuMjI1LTEuMjYzLTQuMDg3LTEuMDgzSDY2LjU2M2MtMS44MTctLjE4LTMuMTc5LjE4LTQuMDQxIDEuMDgzLS44NjMuODU4LTEuMjcyIDIuMzAyLTEuMjcyIDQuMjQydjcuNzE2Yy0uMTM2IDEuODk1LjI3MyAzLjI0OCAxLjEzNSA0LjEwNi44NjMuODU3IDIuMjcgMS4yNjMgNC4xMzIgMS4yNjNoMTIuOTR2My4yMDRINTcuMjU0em05LjE3MS0xNi4wMThjMC0uNjMyLjEzNi0xLjA4My40MDktMS4zNTQuMjcyLS4yNy43MjYtLjQwNiAxLjMxNy0uNDA2aDI3Ljk2OGMuNjM2IDAgMS4wNDQuMTM1IDEuMzE3LjQwNi4yNzIuMjcuNDA4LjcyMi40MDggMS4zNTR2MS41NzlINjYuMzh2LTEuNThoLjA0NXptMS43MjYgOC45NzljLS42MzYgMC0xLjA0NS0uMTM2LTEuMzE3LS40MDYtLjI3My0uMjcxLS40MDktLjcyMi0uNDA5LTEuMzU0VjI1LjlIOTcuODl2MS44NWMwIC42MzItLjEzNiAxLjA4My0uMzYzIDEuMzU0LS4yMjcuMjctLjcyNy40MDYtMS4zNjIuNDA2SDY4LjE1eiIgZmlsbD0iIzIzNTM3OCIvPgogICAgPHBhdGggZD0iTTEwMy4xNTcgNTEuNTN2LTMuMjA0YzAtMS42MjUtLjQwOS0yLjc5OC0xLjE4MS0zLjUycy0yLjA0My0xLjA4My0zLjY3Ny0xLjA4M0g2Ni4wMTdjLTEuNjgtLjA5LTIuOTA2LjIyNi0zLjcyMyAxLjAzOC0uODE4Ljc2Ny0xLjE4MSAxLjk4NS0xLjE4MSAzLjU2NXYzLjIwM2MwIDMuMDY5IDEuNjM1IDQuNjAzIDQuOTA0IDQuNjAzaDE0LjIxdjUuMTg5Yy0uMDQ0Ljc2Ny0uMjcyIDEuMzk4LS42MzUgMS44MDUtLjQwOC40NS0uOTA4LjY3Ni0xLjYzNC42NzZoLTIuNjM0Yy0xLjU4OSAwLTIuNDA2Ljg1OC0yLjQwNiAyLjU3MiAwIDEuNjI1Ljk5OSAyLjQzNyAyLjk1MSAyLjQzN2gzLjk1YzEuODYyLS4wNDUgMy4yNy0uNTg3IDQuMTMyLTEuNTguODYzLS45OTIgMS4yNzEtMi41MjYgMS4yNzEtNC42MDJ2LTYuNTg3aDEzLjEyMmMxLjYzNC4wOSAyLjg2LS4yNzEgMy42NzgtMS4wODQuNzI2LS42MzEgMS4xMzUtMS44NSAxLjEzNS0zLjQyOXptLTUuNDQ5LjEzNWMtLjI3Mi4zNi0uNjguNTQxLTEuMjcxLjU0MUg2Ny44MzNjLTEuMTggMC0xLjcyNi0uNzIyLTEuNzI2LTIuMjU2IDAtMS41MzQuNTktMi4yNTYgMS43MjYtMi4yNTZoMjguNjA0Yy41OSAwIC45OTkuMTggMS4yNzEuNTQxLjI3My4zNjEuNDA5Ljk0OC40MDkgMS43NiAwIC43NjctLjEzNiAxLjMwOS0uNDA5IDEuNjd6TTEzMC41MzUgNTguNzQ5Yy0uNDU0LS45OTMtLjk5OS0xLjQ5LTEuNjgtMS40OS0uNTkgMC0xLjA0NC4xODEtMS40MDguNDk3LS4zNjMuMzE2LS41NDQuODEyLS41NDQgMS40NDQgMCAuMzE2LjA0NS40OTYuMDQ1LjU4Ny40OTkgMi44NDIuNzcyIDQuODI4LjkwOCA1Ljk1Ni4xODIgMS44OTUuOTU0IDIuODg4IDIuMjcgMi44ODguNzI3IDAgMS4zMTctLjIyNiAxLjc3MS0uNjMyLjQ1NC0uNDUxLjU5LS45OTMuNDU0LTEuNzE1bC0uNDk5LTIuNzUyYy0uNDU0LTIuMjExLS44NjMtMy43OS0xLjMxNy00Ljc4M3pNMTIyLjkwNyA1Ny41M2MtLjYzNSAwLTEuMDkuMjI2LTEuNDA3LjYzMi0uMzE4LjQwNi0uNTkxIDEuMDM4LS44NjMgMS44NWwtMS44MTYgNi4zNjJjMCAxLjUzNS43MjYgMi4yNTcgMi4yMjUgMi4yNTcuNjM1IDAgMS4xMzUtLjI3MSAxLjU4OS0uOTAzLjQwOC0uNTg3LjgxNy0xLjQ4OSAxLjIyNi0yLjc5Ny40OTktMS40OS44NjItMy4yNSAxLjEzNS01LjIzNS4wOTEtLjY3Ni0uMDkxLTEuMjE4LS40NTQtMS42MjQtLjQwOS0uMzYxLS45NTQtLjU0MS0xLjYzNS0uNTQxek0xMzMuNzEzIDU4LjQ3OGwuMjI3IDEuMTczLjY4MSAyLjUyN2MuNSAxLjcxNS45OTkgMy4yMDQgMS4zNjIgNC4yODcuMjczLjgxMi45NTQgMS4yMTggMS45MDcgMS4yMTguNzI3IDAgMS4zMTctLjE4IDEuNjgtLjQ5Ni40MDktLjM2MS41NDUtLjg1OC40NTQtMS41MzRsLS4xODEtMS4yMTktLjc3Mi0yLjc1MmMtLjU0NS0xLjc2LTEuMDktMy4wMjMtMS42MzUtMy44OC0uNTQ1LS44MTMtMS4wODktMS4yNjQtMS43MjUtMS4yNjQtLjYzNiAwLTEuMTgxLjE4LTEuNTg5LjQ5NmExLjQ4NiAxLjQ4NiAwIDAgMC0uNDA5IDEuNDQ0ek0xNzAuODA4IDI1LjQ0OWgtOS4zNTN2LTguNzU0YzAtMS44MDUtLjgxOC0yLjcwNy0yLjQwNy0yLjcwN3MtMi40MDYuOTAyLTIuNDA2IDIuNzA3djI1LjA0M2gtMi44NjFjLTEuNzctLjEzNi0zLjA4Ny4yMjUtMy44NTkgMS4wMzgtLjc3Mi44MTItMS4xOCAyLjE2NS0xLjE4IDQuMDE1VjYyLjQ1YzAgLjU4NiAwIDEuMjYzLjA5IDEuODUuMTM3IDEuMDM4LjQ1NSAxLjg1Ljk5OSAyLjM5MS44MTguNzY3IDIuMTM0IDEuMTczIDMuOTUgMS4xNzNoMTMuMDMxYy4yMjcgMCAuNDU0LjA0Ni42ODEuMDQ2IDEuNDA4IDAgMi40OTgtLjM2MSAzLjE3OS0xLjA4My44MTctLjgxMyAxLjIyNS0yLjE2NiAxLjIyNS00LjAxNlY0Ni44ODJjLjA5MS0xLjgwNS0uMjcyLTMuMTE0LTEuMDg5LTMuODgtLjgxNy0uODEzLTIuMTM0LTEuMjItMy45NS0xLjIyaC01LjQwM3YtMTEuMjhoOS4zNTNjMi4wNDMgMCAzLjA0Mi0uODEyIDMuMDQyLTIuNDM2IDAtMS43Ni0xLjA0NC0yLjYxNy0zLjA0Mi0yLjYxN3ptLTUuNTg1IDIwLjkzNmMuNTkgMCAxLjA0NC4xOCAxLjQwOC40OTcuMzYzLjM2LjQ5OS44MTIuNDk5IDEuNDQ0djEzLjA0YzAgLjU4Ni0uMTgyIDEuMDgzLS40OTkgMS40NDQtLjMxOC4zNi0uODE4LjU0MS0xLjQwOC41NDFoLTkuODA3Yy0uNTkgMC0xLjA0NC0uMTgtMS40MDctLjQ5Ni0uMzY0LS4zMTYtLjUtLjgxMi0uNS0xLjQ0NFY0OC40MTZjMC0uNTg3LjE4Mi0xLjA4My41LTEuNDQ0LjMxNy0uMzYxLjc3MS0uNTQxIDEuNDA3LS41NDFoOS44MDd2LS4wNDZ6TTE0Mi42NTggNTUuOTUxYy0uNTkxIDAtMS4wOS4xOC0xLjQ1My40OTctLjM2My4zMTUtLjU0NS43NjctLjU0NSAxLjM1MyAwIC4zMTYuMTM2Ljg1Ny40MDkgMS42MjVsMS4xOCAzLjUyYy40NTQgMS4zMDguODYzIDIuMjEgMS4zMTcgMi43OTcuNDU0LjU4Ni45NTMuOTAyIDEuNDk4LjkwMi42ODEgMCAxLjIyNi0uMTggMS41ODktLjQ5Ni4zMTgtLjMxNi40NTQtLjcyMi41LTEuMDM4LjA0NS0uNDUxLjA0NS0uOTAzLS4wNDYtMS4yNjMtLjE4MS0uODEzLS42ODEtMi4wNzYtMS4zNjItMy44MzYtMS4wOS0yLjc1Mi0yLjA4OC00LjA2LTMuMDg3LTQuMDZ6IiBmaWxsPSIjMjM1Mzc4Ii8+CiAgICA8cGF0aCBkPSJNMjUuNjk4IDQzLjcyM2MtNC4wNCAwLTcuMzU1LTMuMjk0LTcuMzU1LTcuMzEgMC00LjAxNSAzLjMxNC03LjMxIDcuMzU1LTcuMzFzNy4zNTYgMy4yOTQgNy4zNTYgNy4zMS0zLjMxNSA3LjMxLTcuMzU2IDcuMzF6TTQyLjYzNCAzN2MwLTEwLjE5OC03LjQ5Mi0xNy4zNzItMTYuOTM2LTE3LjM3Mi05LjQ0NCAwLTE2Ljg5IDcuMTc0LTE2Ljg5IDE3LjM3MiAwIDYuNTQzIDUuNDk0IDE1LjI1MSAxNi45MzYgMjUuNjNDMzcuMTQgNTIuMjUgNDIuNjM0IDQzLjU0MiA0Mi42MzQgMzd6TTI1LjY5OCAxMy45ODhjMTEuODUgMCAyMi41NjYgOS4wMjQgMjIuNTY2IDIyLjk2NyAwIDkuMjk1LTcuNTM3IDIwLjMwNS0yMi41NjYgMzMuMDc0QzEwLjY3IDU3LjMwNSAzLjEzMyA0Ni4yOTUgMy4xMzMgMzdjMC0xMy45NDMgMTAuNzE1LTIzLjAxMiAyMi41NjUtMjMuMDEyeiIgZmlsbD0iI0YyOUM5NyIvPgogICAgPHBhdGggZD0iTTEzMi42MjMgMjEuNzA0YTYuMTQzIDYuMTQzIDAgMCAwLTYuMTc0IDYuMTgxYzAgMy40MyAyLjc2OSA2LjE4MiA2LjIyIDYuMTgyIDMuNDA1IDAgNi4yMi0yLjc1MiA2LjIyLTYuMTgyYTYuMjUgNi4yNSAwIDAgMC02LjI2Ni02LjE4MXptMCAxMC40NjhjLTIuNDA2IDAtNC4zNTgtMS45NC00LjM1OC00LjMzMiAwLTIuMzkxIDEuOTUyLTQuMzMxIDQuMzEzLTQuMzMxIDIuNDA2IDAgNC4zNTkgMS45NCA0LjM1OSA0LjMzMS4wNDUgMi4zOTItMS45NTMgNC4zNzctNC4zMTQgNC4zMzJ6IiBmaWxsPSIjMjM1Mzc4Ii8+CiAgICA8cGF0aCBkPSJNMTQ2LjU2MiAxOC41aC03Ljc2NGMtLjA5LS42MzItLjE4MS0xLjI2My0uMjI3LTEuOTQtLjA5LTEuMDM4LS44NjItMS44MDUtMS45MDctMS44MDVoLTguMDgxYy0xLjA5IDAtMS44NjIuNzIyLTEuOTUzIDEuODA1LS4wNDUuNjMyLS4xMzYgMS4yNjMtLjIyNyAxLjk0SDExOC42MzljLS43NzIgMC0xLjI3MS40OTYtMS4yNzEgMS4yNjN2MTYuMTA5YzAgLjkwMi40OTkgMS4zOTkgMS40MDcgMS4zOTloMTIuMTIzdjQuMjQxaC04Ljc2M2MtMS43NyAwLTIuNjc5Ljc2Ny0yLjY3OSAyLjI1NiAwIDEuNTM0LjkwOSAyLjM0NyAyLjY3OSAyLjM0N2g4LjY3MnY0LjE5NmgtLjI3MmMtMy4xMzMuMTgtNi4xNzUuMjctOS4wMzUuMjctMi40NTIgMC0zLjcyMy44NTgtMy43MjMgMi41NzMgMCAuODEyLjIyNyAxLjQ4OS43MjYgMS45NC40OTkuNDUxIDEuMTguNjMyIDIuMDg5LjU4N2wyMi4yOTMtMS40YzIuMzYxLS4xMzUgMy41NDEtLjkwMiAzLjU0MS0yLjM5IDAtLjc2OC0uMjI3LTEuMzU0LS42MzYtMS43Ni0uNDA4LS40MDctLjk5OC0uNjMyLTEuNzctLjU4N2wtOS4wMzYuNDk2di0zLjkyNWg4LjA4MmMxLjc3MSAwIDIuNjc5LS43NjcgMi42NzktMi4zNDcgMC0xLjQ4OS0uOTA4LTIuMjU2LTIuNjc5LTIuMjU2aC04LjA4MnYtNC4xOTZoMTEuNTMzYy45MDggMCAxLjQwNy0uNDk3IDEuNDA3LTEuMzk5VjE5LjljMC0uOTAzLS40OTktMS4zOTktMS4zNjItMS4zOTl6bS0xMy45MzkgMTcuMTQ2Yy00LjIyMiAwLTcuNzY0LTMuNDI5LTcuODA5LTcuNjI1IDAtNC4zMzIgMy40MDUtNy44MDYgNy42MjgtNy44NTIgNC4yMjItLjA5IDcuOTQ1IDMuMjk0IDcuOTQ1IDcuNzE2LjA0NiA0LjI0Mi0zLjQ1IDcuNzE2LTcuNzY0IDcuNzYxem0xMC4zOTgtMTEuNjQxYTEuMzM0IDEuMzM0IDAgMCAxLTEuMzYyLTEuMzU0YzAtLjc2Ny41OS0xLjM1MyAxLjM2Mi0xLjM1My43NzIgMCAxLjM2Mi41ODYgMS4zNjIgMS4zNTNzLS41OSAxLjM1NC0xLjM2MiAxLjM1NHoiIGZpbGw9IiMyMzUzNzgiLz4KPC9zdmc+Cg==" alt="" />
-          </a>
-          <!-- pc select -->
-          <div class="relative shadow xl:block hidden">
-            <input
-              id="pcSeach"
-              class="bg-white w-[250px] h-11 rounded border border-gray-200 pl-4 pr-[52px] py-3 text-sm leading-[20px] outline-none focus:border-primary-dark focus-visible:border-primary-dark"
-              type="text"
-              placeholder="請輸入關鍵字"
-            />
-            <button
-              class="absolute right-6 top-1/2 -translate-y-1/2"
-              type="button"
-            >
-              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMzMzM1bHZjbm5hKSI+CiAgICAgICAgPG1hc2sgaWQ9ImFxanlrNzZwcGIiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjMiIHk9IjMiIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyI+CiAgICAgICAgICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMy40NzcgMy40NzdoMTYuMzYyVjE5Ljg0SDMuNDc3VjMuNDc3eiIgZmlsbD0iI2ZmZiIvPgogICAgICAgIDwvbWFzaz4KICAgICAgICA8ZyBtYXNrPSJ1cmwoI2FxanlrNzZwcGIpIj4KICAgICAgICAgICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS42NTggNC43MzdhNi45MjkgNi45MjkgMCAwIDAtNi45MjEgNi45MiA2LjkzIDYuOTMgMCAwIDAgNi45MjEgNi45MjJjMy44MTYgMCA2LjkyLTMuMTA1IDYuOTItNi45MjFhNi45MjggNi45MjggMCAwIDAtNi45Mi02LjkyMXptMCAxNS4xMDJjLTQuNTExIDAtOC4xODEtMy42Ny04LjE4MS04LjE4MSAwLTQuNTEyIDMuNjctOC4xODEgOC4xODEtOC4xODEgNC41MTEgMCA4LjE4MSAzLjY3IDguMTgxIDguMTggMCA0LjUxMi0zLjY3IDguMTgyLTguMTggOC4xODJ6IiBmaWxsPSIjMDAwIi8+CiAgICAgICAgPC9nPgogICAgICAgIDxtYXNrIGlkPSJsaXVzZG1lZGxjIiBzdHlsZT0ibWFzay10eXBlOmFscGhhIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIxNiIgeT0iMTciIHdpZHRoPSI2IiBoZWlnaHQ9IjUiPgogICAgICAgICAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE2LjcyNCAxNy4xNzNoNC44MzVWMjJoLTQuODM1di00LjgyN3oiIGZpbGw9IiNmZmYiLz4KICAgICAgICA8L21hc2s+CiAgICAgICAgPGcgbWFzaz0idXJsKCNsaXVzZG1lZGxjKSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAuODM4IDIyYS43MjMuNzIzIDAgMCAxLS41MS0uMjFsLTMuMzkyLTMuMzgzYS43MjIuNzIyIDAgMCAxIDEuMDItMS4wMjNsMy4zOTIgMy4zODNhLjcyMS43MjEgMCAwIDEtLjUxIDEuMjMzeiIgZmlsbD0iIzAwMCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KICAgIDxkZWZzPgogICAgICAgIDxjbGlwUGF0aCBpZD0iMzMzNWx2Y25uYSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoMjR2MjRIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K" alt="" />
-            </button>
-            <!-- pc 選單 -->
-            <div
-              id="searchMenu"
-              class="absolute top-full left-0 bg-white border border-gray-200 rounded shadow xl:w-[325px] mt-2 hidden px-8 py-4 z-10"
-            >
-              <p class="text-dark text-lg leading-[24px]">熱門關鍵字</p>
-              <div class="mt-4 flex flex-wrap">
-                <!-- 關鍵字 tag (可跑迴圈) -->
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >美食</a
-                >
-                <!-- 關鍵字 tag end -->
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >花海</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >防疫新生活</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >電影</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >東京車站</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >白熊咖啡廳</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >自助旅行</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >台東</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >熱氣球</a
-                >
-              </div>
-            </div>
-            <div id="searchMenuShadow" class="fixed inset-0 z-0 hidden"></div>
-            <!-- pc 選單 end -->
-          </div>
-          <!-- pc select end -->
-
-          <!-- mb select -->
-          <div class="xl:hidden flex space-x-6">
-            <button id="searchButton" class="w-6 h-6" type="button">
-              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMzMzM1bHZjbm5hKSI+CiAgICAgICAgPG1hc2sgaWQ9ImFxanlrNzZwcGIiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjMiIHk9IjMiIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyI+CiAgICAgICAgICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMy40NzcgMy40NzdoMTYuMzYyVjE5Ljg0SDMuNDc3VjMuNDc3eiIgZmlsbD0iI2ZmZiIvPgogICAgICAgIDwvbWFzaz4KICAgICAgICA8ZyBtYXNrPSJ1cmwoI2FxanlrNzZwcGIpIj4KICAgICAgICAgICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS42NTggNC43MzdhNi45MjkgNi45MjkgMCAwIDAtNi45MjEgNi45MiA2LjkzIDYuOTMgMCAwIDAgNi45MjEgNi45MjJjMy44MTYgMCA2LjkyLTMuMTA1IDYuOTItNi45MjFhNi45MjggNi45MjggMCAwIDAtNi45Mi02LjkyMXptMCAxNS4xMDJjLTQuNTExIDAtOC4xODEtMy42Ny04LjE4MS04LjE4MSAwLTQuNTEyIDMuNjctOC4xODEgOC4xODEtOC4xODEgNC41MTEgMCA4LjE4MSAzLjY3IDguMTgxIDguMTggMCA0LjUxMi0zLjY3IDguMTgyLTguMTggOC4xODJ6IiBmaWxsPSIjMDAwIi8+CiAgICAgICAgPC9nPgogICAgICAgIDxtYXNrIGlkPSJsaXVzZG1lZGxjIiBzdHlsZT0ibWFzay10eXBlOmFscGhhIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIxNiIgeT0iMTciIHdpZHRoPSI2IiBoZWlnaHQ9IjUiPgogICAgICAgICAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE2LjcyNCAxNy4xNzNoNC44MzVWMjJoLTQuODM1di00LjgyN3oiIGZpbGw9IiNmZmYiLz4KICAgICAgICA8L21hc2s+CiAgICAgICAgPGcgbWFzaz0idXJsKCNsaXVzZG1lZGxjKSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAuODM4IDIyYS43MjMuNzIzIDAgMCAxLS41MS0uMjFsLTMuMzkyLTMuMzgzYS43MjIuNzIyIDAgMCAxIDEuMDItMS4wMjNsMy4zOTIgMy4zODNhLjcyMS43MjEgMCAwIDEtLjUxIDEuMjMzeiIgZmlsbD0iIzAwMCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KICAgIDxkZWZzPgogICAgICAgIDxjbGlwUGF0aCBpZD0iMzMzNWx2Y25uYSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoMjR2MjRIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K" alt="" />
-            </button>
-            <button id="menuButton" class="w-6 h-6" type="button">
-              <img
-                id="hamburgerIcon"
-                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCNxZnowazJpdXdhKSIgZmlsbD0iIzAwMCI+CiAgICAgICAgPHBhdGggZD0iTTQgNi43MjZhLjc1Ljc1IDAgMCAxIC42NDgtLjc0M2wuMTAyLS4wMDdoMTVhLjc1Ljc1IDAgMCAxIC4xMDIgMS40OTNsLS4xMDIuMDA3aC0xNWEuNzUuNzUgMCAwIDEtLjc1LS43NXpNNCAxMS43NWEuNzUuNzUgMCAwIDEgLjY0OC0uNzQzTDQuNzUgMTFoMTVhLjc1Ljc1IDAgMCAxIC4xMDIgMS40OTNsLS4xMDIuMDA3aC0xNWEuNzUuNzUgMCAwIDEtLjc1LS43NXpNNCAxNi43NWEuNzUuNzUgMCAwIDEgLjY0OC0uNzQzTDQuNzUgMTZoMTVhLjc1Ljc1IDAgMCAxIC4xMDIgMS40OTNsLS4xMDIuMDA3aC0xNWEuNzUuNzUgMCAwIDEtLjc1LS43NXoiLz4KICAgIDwvZz4KICAgIDxkZWZzPgogICAgICAgIDxjbGlwUGF0aCBpZD0icWZ6MGsyaXV3YSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoMjR2MjRIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"
-                alt=""
-              />
-              <img
-                id="closeIcon"
-                class="hidden"
-                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCNrdXlmbXRzNnRhKSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgICAgICA8cGF0aCBkPSJNMTkgNSA1IDE5TTE5IDE5IDUgNSIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSJrdXlmbXRzNnRhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDwvY2xpcFBhdGg+CiAgICA8L2RlZnM+Cjwvc3ZnPgo="
-                alt=""
-              />
-            </button>
-          </div>
-          <!-- mb select  end-->
-
-          <!-- 手機版選單 -->
-          <div
-            id="mbSearchMenu"
-            class="fixed top-0 left-0 bg-light hidden w-full h-full z-40"
-          >
-            <div class="bg-white px-4 py-2 flex items-center space-x-4">
-              <div class="relative w-[85%]">
-                <input
-                  id="mbSeach"
-                  class="bg-white w-full h-11 rounded border border-gray-200 pl-6 pr-[52px] py-3 focus:outline-primary-dark"
-                  type="text"
-                  placeholder="請輸入關鍵字"
-                />
-                <button
-                  class="absolute right-6 top-1/2 -translate-y-1/2"
-                  type="button"
-                >
-                  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMzMzM1bHZjbm5hKSI+CiAgICAgICAgPG1hc2sgaWQ9ImFxanlrNzZwcGIiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjMiIHk9IjMiIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyI+CiAgICAgICAgICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMy40NzcgMy40NzdoMTYuMzYyVjE5Ljg0SDMuNDc3VjMuNDc3eiIgZmlsbD0iI2ZmZiIvPgogICAgICAgIDwvbWFzaz4KICAgICAgICA8ZyBtYXNrPSJ1cmwoI2FxanlrNzZwcGIpIj4KICAgICAgICAgICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS42NTggNC43MzdhNi45MjkgNi45MjkgMCAwIDAtNi45MjEgNi45MiA2LjkzIDYuOTMgMCAwIDAgNi45MjEgNi45MjJjMy44MTYgMCA2LjkyLTMuMTA1IDYuOTItNi45MjFhNi45MjggNi45MjggMCAwIDAtNi45Mi02LjkyMXptMCAxNS4xMDJjLTQuNTExIDAtOC4xODEtMy42Ny04LjE4MS04LjE4MSAwLTQuNTEyIDMuNjctOC4xODEgOC4xODEtOC4xODEgNC41MTEgMCA4LjE4MSAzLjY3IDguMTgxIDguMTggMCA0LjUxMi0zLjY3IDguMTgyLTguMTggOC4xODJ6IiBmaWxsPSIjMDAwIi8+CiAgICAgICAgPC9nPgogICAgICAgIDxtYXNrIGlkPSJsaXVzZG1lZGxjIiBzdHlsZT0ibWFzay10eXBlOmFscGhhIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIxNiIgeT0iMTciIHdpZHRoPSI2IiBoZWlnaHQ9IjUiPgogICAgICAgICAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE2LjcyNCAxNy4xNzNoNC44MzVWMjJoLTQuODM1di00LjgyN3oiIGZpbGw9IiNmZmYiLz4KICAgICAgICA8L21hc2s+CiAgICAgICAgPGcgbWFzaz0idXJsKCNsaXVzZG1lZGxjKSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAuODM4IDIyYS43MjMuNzIzIDAgMCAxLS41MS0uMjFsLTMuMzkyLTMuMzgzYS43MjIuNzIyIDAgMCAxIDEuMDItMS4wMjNsMy4zOTIgMy4zODNhLjcyMS43MjEgMCAwIDEtLjUxIDEuMjMzeiIgZmlsbD0iIzAwMCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KICAgIDxkZWZzPgogICAgICAgIDxjbGlwUGF0aCBpZD0iMzMzNWx2Y25uYSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoMjR2MjRIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K" alt="" />
-                </button>
-              </div>
-              <button
-                id="cancelButton"
-                class="text-dark text-sm w-[10%]"
-                type="button"
-              >
-                取消
-              </button>
-            </div>
-            <div class="bg-light border border-gray-200 p-4 flex-auto h-full">
-              <p class="text-dark">熱門關鍵字</p>
-              <div class="mt-4 flex flex-wrap">
-                <!-- 關鍵字 tag (可跑迴圈) -->
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >美食</a
-                >
-                <!-- 關鍵字 tag end -->
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >花海</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >防疫新生活</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >電影</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >東京車站</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >白熊咖啡廳</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >自助旅行</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >台東</a
-                >
-                <a
-                  class="bg-gray-200 text-light-dark text-sm leading-[18px] px-3 py-[7px] rounded duration-200 hover:bg-gray-300 mr-4 mb-4"
-                  href="#"
-                  >熱氣球</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- 手機版選單 end -->
+          <span
+            class="inline-block w-6 h-[2px] bg-white mt-[6px] origin-top-left"
+          ></span>
+          <span class="inline-block w-6 h-[2px] bg-white mt-[6px]"></span>
+          <span
+            class="inline-block w-6 h-[2px] bg-white mt-[6px] origin-top-right"
+          ></span>
         </div>
-        <div class="xl:flex hidden items-center space-x-4">
-          <div class="flex items-center">
+      </button>
+      <nav id="navbar" class="navbar">
+        <ul
+          class="flex xl:w-auto w-full xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-8 xl:p-0 py-8 xl:text-left text-center"
+        >
+          <!-- nav item (可跑回圈) -->
+          <li>
+            <!-- active 效果加 !text-secondary-blue -->
             <a
-              class="px-4 py-3 text-sm leading-[20px] rounded-full duration-200 hover:bg-gray-100"
-              href="https://www.mook.com.tw/"
+              class="xl:text-base text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://www.mook.com.tw/article.php"
               target="_blank"
-              >MOOK</a
+              rel="noopener noreferrer"
+              >景點+</a
             >
+          </li>
+          <!-- nav item end (可跑回圈) -->
+          <li>
             <a
-              class="px-4 py-3 text-smleading-[20px] rounded-full duration-200 hover:bg-gray-100"
-              href="https://blog.mook.com.tw"
+              class="xl:text-base text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://www.travelerluxe.com/"
               target="_blank"
-              >Blog玩家</a
+              rel="noopener noreferrer"
+              >旅人誌</a
             >
+          </li>
+          <li>
             <a
-              class="px-4 py-3 text-smleading-[20px] rounded-full duration-200 hover:bg-gray-100"
+              class="xl:text-base text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
               href="https://blog.mook.com.tw/book"
               target="_blank"
+              rel="noopener noreferrer"
               >墨刻Book</a
             >
-          </div>
-
-          <!-- social media -->
-          <div
-            class="grid grid-cols-4 space-x-2 text-center max-w-[192px] mx-auto"
-          >
-            <!-- Facebook -->
+          </li>
+          <li>
             <a
-              class="group bg-gray-100 flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
+              class="xl:text-base text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://www.youtube.com/channel/UCZui9zjZF4s7lIscKUPgfXg"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Mook玩什麼</a
+            >
+          </li>
+          <li>
+            <a
+              class="xl:text-base text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://blog.mook.com.tw/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Blog玩家</a
+            >
+          </li>
+          <li>
+            <a
+              class="xl:text-base text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Mook玩世界</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="bg-shadow"></div>
+    </header>
+    <!-- header end -->
+
+    <!-- 主圖 -->
+    <div class="relative xl:h-screen h-[280px]">
+      <div
+        class="w-full h-full pointer-events-none before:z-[1] before:block before:bg-black before:opacity-30 before:w-full before:h-full before:absolute before:inset-0"
+      >
+        <div id="splide" class="splide !h-full">
+          <div class="splide__track !h-full">
+            <ul class="splide__list !h-full">
+              <li class="splide__slide !h-full">
+                <div
+                  class="xl:block hidden absolute inset-0 bg-fixed bg-center bg-size bg-cover bg-no-repeat w-full h-full"
+                  style="background-image: url('./images/banner1.jpg')"
+                ></div>
+                <div
+                  class="xl:hidden absolute inset-0 bg-center bg-size bg-cover bg-no-repeat w-full h-full"
+                  style="background-image: url('./images/banner1_m.jpg')"
+                ></div>
+              </li>
+              <li class="splide__slide !h-full">
+                <div
+                  class="xl:block hidden absolute inset-0 bg-fixed bg-center bg-size bg-cover bg-no-repeat w-full h-full"
+                  style="background-image: url('./images/banner2.jpg')"
+                ></div>
+                <div
+                  class="xl:hidden absolute inset-0 bg-center bg-size bg-cover bg-no-repeat w-full h-full"
+                  style="background-image: url('./images/banner2_m.jpg')"
+                ></div>
+              </li>
+              <li class="splide__slide !h-full">
+                <div
+                  class="xl:block hidden absolute inset-0 bg-fixed bg-center bg-size bg-cover bg-no-repeat w-full h-full"
+                  style="background-image: url('./images/banner3.jpg')"
+                ></div>
+                <div
+                  class="xl:hidden absolute inset-0 bg-center bg-size bg-cover bg-no-repeat w-full h-full"
+                  style="background-image: url('./images/banner3_m.jpg')"
+                ></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute left-0 xl:top-[133px] top-14 w-full xl:px-10 px-4 xl:mt-0 mt-2 opacity-0 animate-title z-[2]"
+      >
+        <h1
+          class="text-white xl:text-5xl text-[28px] xl:leading-[48px] leading-[28px] tracking-[2.4px] font-medium"
+        >
+          華文旅遊生活風格全媒體
+        </h1>
+        <p
+          class="text-white xl:text-[22px] text-sm xl:leading-[22px] leading-[16px] xl:mt-8 mt-4"
+        >
+          讓同樣愛旅遊、懂生活、有創意的你一起玩轉全世界
+        </p>
+      </div>
+      <button
+        id="scrollButton"
+        class="absolute bottom-[8px] left-1/2 -translate-x-1/2 flex flex-col items-center space-y-[2px] z-[2]"
+        type="button"
+      >
+        <div
+          class="text-white xl:text-sm text-xs leading-[16px] font-inter font-semibold"
+        >
+          Scroll
+        </div>
+        <span
+          class="relative w-px h-[30px] overflow-hidden before:block before:bg-white before:bg-opacity-20 before:w-px before:h-full before:absolute before:inset-0 after:block after:w-px after:h-1/2 after:absolute after:bg-white after:animate-scroll"
+        ></span>
+      </button>
+    </div>
+
+    <!-- 關於墨刻 -->
+    <section
+      id="about"
+      class="max-w-5xl mx-auto xl:py-10 py-8 xl:px-0 px-6"
+      data-aos="fade-up"
+      data-aos-duration="2000"
+    >
+      <div
+        class="flex xl:space-x-16 xl:space-y-0 space-y-4 xl:flex-row flex-col"
+      >
+        <!-- title -->
+        <div class="flex flex-col">
+          <div class="flex space-x-2">
+            <span
+              class="w-[10px] h-[10px] rounded-full bg-secondary-orange"
+            ></span>
+            <span
+              class="w-[10px] h-[10px] rounded-full bg-secondary-red"
+            ></span>
+          </div>
+          <h2
+            class="text-primary xl:text-[32px] text-[28px] xl:leading-[40px] leading-[36px] font-bold tracking-[2px] whitespace-nowrap xl:mt-4 mt-3"
+          >
+            關於墨刻
+          </h2>
+          <p
+            class="font-inter font-bold xl:text-lg text-base xl:leading-[28px] leading-[24px] tracking-[0.5px] text-secondary-red whitespace-nowrap xl:mt-2 mt-1"
+          >
+            ABOUT MOOK
+          </p>
+        </div>
+
+        <p class="text-base leading-[32px] text-primary xl:!mt-[26px]">
+          墨刻出版是華文市場第一個以MOOK (Magazine +Book)
+          雜誌書爲出版宗旨及工作理念的媒體，是專業的旅遊書籍自製出版公司。
+          墨刻出版創立於1998年5月，有系統地將日本風行已久的「MOOK」概念引進台灣，由商周出版發行人／商業周刊創辦人何飛鵬，擔任發行人，以『我到達‧我感受‧我記錄‧我出版』為出版宗旨，建立現代人最容易接受的旅遊閱讀模式。
+          MOOK結合了書籍的深入詳實與雜誌的圖文並茂等特點，持續累積旅遊最新資訊、影音及圖片，擁有最佳資源優勢的中文出版公司，不論國際、國內旅遊都深受讀者歡迎。
+          除了旅遊書籍，墨刻亦準確掌握市場脈動，以讀者的閱讀價值為核心，積極與數位科技接軌，推出多種數位產品繼續為讀者服務。
+        </p>
+      </div>
+    </section>
+
+    <!-- list -->
+    <section class="max-w-5xl mx-auto xl:px-0 px-6 xl:mb-10 mb-8">
+      <ul class="xl:space-y-8 space-y-4">
+        <li
+          class="flex xl:space-x-[34px] space-x-[9px]"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <img
+            class="xl:w-14 xl:h-14 w-10 h-10"
+            src="./images/icon/Service_Icon_Global2.svg"
+            alt=""
+          />
+          <div class="flex flex-col xl:space-y-3">
+            <p
+              class="text-secondary-blue font-bold text-xl xl:leading-[30px] leading-[40px] tracking-[1px]"
+            >
+              全方位旅遊出版系列產品
+            </p>
+            <p class="text-primary text-base leading-[32px]">
+              國外旅遊書系列產品《NewAction》、《制霸WAGAMAMA》、《地圖隨身GO》、《CityTarget》、《地球の步方》。
+              台灣國內旅遊書系列產品《nicetrip》、《悠遊小旅行》、《PowerTravel》、《Let's
+              OFF》。
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex xl:space-x-[34px] space-x-[9px]"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <img
+            class="xl:w-14 xl:h-14 w-10 h-10"
+            src="./images/icon/Service_Icon_eBook.svg"
+            alt=""
+          />
+          <div class="flex flex-col xl:space-y-3">
+            <p
+              class="text-secondary-blue font-bold text-xl xl:leading-[30px] leading-[40px] tracking-[1px]"
+            >
+              電子書和有聲書
+            </p>
+            <p class="text-primary text-base leading-[32px]">
+              將MOOK出版的書籍數位資料化，提供高品質的數位閱讀或聆聽體驗。
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex xl:space-x-[34px] space-x-[9px]"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <img
+            class="xl:w-14 xl:h-14 w-10 h-10"
+            src="./images/icon/Service_Icon_Network2.svg"
+            alt=""
+          />
+          <div class="flex flex-col xl:space-y-3">
+            <p
+              class="text-secondary-blue font-bold text-xl xl:leading-[30px] leading-[40px] tracking-[1px]"
+            >
+              線上課程
+            </p>
+            <p class="text-primary text-base leading-[32px]">
+              專業的線上學習課程，如葡萄酒、駭客攻擊破解術、魔術或攝影課程...讓人可以不受時間、空間的限制，學習到最專業知識。
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex xl:space-x-[34px] space-x-[9px]"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <img
+            class="xl:w-14 xl:h-14 w-10 h-10"
+            src="./images/icon/Service_Icon_YouTube.svg"
+            alt=""
+          />
+          <div class="flex flex-col xl:space-y-3">
+            <p
+              class="text-secondary-blue font-bold text-xl xl:leading-[30px] leading-[40px] tracking-[1px]"
+            >
+              《MOOK玩什麼》YT頻道
+            </p>
+            <p class="text-primary text-base leading-[32px]">
+              透過國外的實境拍攝影片，提供最實用的旅遊技巧攻略，和最新的吃喝玩買資訊，帶你輕鬆玩遍世界。
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex xl:space-x-[34px] space-x-[9px]"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <img
+            class="xl:w-14 xl:h-14 w-10 h-10"
+            src="./images/icon/Service_Icon_Book.svg"
+            alt=""
+          />
+          <div class="flex flex-col xl:space-y-3">
+            <p
+              class="text-secondary-blue font-bold text-xl xl:leading-[30px] leading-[40px] tracking-[1px]"
+            >
+              專業本土作者書和國外版權書
+            </p>
+            <p class="text-primary text-base leading-[32px]">
+              商管理財、生活風格、醫療保健、心靈勵志、社科科普等不同類型的書籍，未來亦會致力開發台灣本土優秀作者，及引進國外優質版權書籍，帶給讀者更多元、更寬廣的閱讀體驗。
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex xl:space-x-[34px] space-x-[9px]"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <img
+            class="xl:w-14 xl:h-14 w-10 h-10"
+            src="./images/icon/Service_Icon_Report.svg"
+            alt=""
+          />
+          <div class="flex flex-col xl:space-y-3">
+            <p
+              class="text-secondary-blue font-bold text-xl xl:leading-[30px] leading-[40px] tracking-[1px]"
+            >
+              個人自費出版、政府出版物代編
+            </p>
+            <p class="text-primary text-base leading-[32px]">
+              金鼎獎得獎團隊、入選博客來與誠品暢銷書排行榜的編輯夥伴聯手操刀。從前期出版企劃、採訪撰稿、編輯校對、排版設計；到最後紙本書和電子書發行上架、通路暨媒體行銷宣傳。不僅提供全方位的服務，還會全程陪伴傾聽需求，協助找出市場切點，精準完成客製化出版品。
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- banner -->
+    <section class="w-full xl:h-[250px] h-[120px]">
+      <div
+        class="bg-fixed bg-center bg-size bg-cover bg-no-repeat w-full h-full"
+        style="background-image: url('./images/banner4.jpg')"
+      ></div>
+    </section>
+
+    <!-- 數位媒體 -->
+    <section
+      class="max-w-5xl mx-auto xl:py-10 py-8 xl:px-0 px-6"
+      data-aos="fade-up"
+      data-aos-duration="2000"
+    >
+      <!-- title -->
+      <div class="flex flex-col">
+        <div class="flex space-x-2">
+          <span
+            class="w-[10px] h-[10px] rounded-full bg-secondary-orange"
+          ></span>
+          <span class="w-[10px] h-[10px] rounded-full bg-secondary-red"></span>
+        </div>
+        <h2
+          class="text-primary xl:text-[32px] text-[28px] xl:leading-[40px] leading-[36px] font-bold tracking-[2px] whitespace-nowrap xl:mt-4 mt-3"
+        >
+          數位媒體
+        </h2>
+        <p
+          class="font-inter font-bold xl:text-lg text-base xl:leading-[28px] leading-[24px] tracking-[0.5px] text-secondary-red whitespace-nowrap xl:mt-2 mt-1"
+        >
+          SOCIAL MEDIA
+        </p>
+      </div>
+      <div
+        class="xl:grid gap-x-10 xl:gap-y-12 gap-y-10 xl:grid-cols-3 flex flex-wrap xl:justify-start justify-center xl:mt-[44px] xl:mb-10 mt-4 mb-8 px-[22px]"
+      >
+        <!-- 景點+卡片 -->
+        <div
+          class="w-[300px] h-[280px] border border-[#dee8f0] rounded-2xl space-y-4 pt-7 pb-9 px-[42px] duration-300 hover:shadow hover:-translate-y-2"
+        >
+          <a
+            class="w-[175px] h-[100px] flex items-center justify-center mx-auto"
+            href="https://www.mook.com.tw/article.php"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="w-[121px] h-[45px]"
+              src="./images/icon/Logo_Attractions+.svg"
+              alt=""
+            />
+          </a>
+          <p class="text-primary-light text-sm leading-[24px] text-center">
+            吃喝玩買找樂點<br />
+            旅行與分享就從這裡出發
+          </p>
+          <div class="flex items-center justify-center space-x-[24px]">
+            <!-- facebook -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
               href="https://www.facebook.com/tripass.net"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
-                class="fill-gray-500 group-hover:fill-white"
-                width="20"
-                height="20"
+                class="w-6 h-6 fill-current text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -250,16 +427,15 @@
                 />
               </svg>
             </a>
-            <!-- Instagram -->
+            <!-- instagram -->
             <a
-              class="group bg-gray-100 flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
               href="https://www.instagram.com/mook_travel_plus/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
-                class="fill-gray-500 group-hover:fill-white"
-                width="20"
-                height="20"
+                class="w-6 h-6 fill-current text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -269,16 +445,37 @@
                 />
               </svg>
             </a>
-            <!-- Youtube -->
+            <!-- line -->
             <a
-              class="group bg-gray-100 flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
-              href="https://www.youtube.com/channel/UCVrNFlaSYxbEKVAMFW6o5FQ "
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://line.me/R/ti/p/%40hsj8845q"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
-                class="fill-gray-500 group-hover:fill-white"
-                width="20"
-                height="20"
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 11.118C22 6.642 17.515 3 12 3S2 6.642 2 11.118c0 4.008 3.558 7.369 8.361 8.006.328.075.768.215.88.496.104.253.066.646.029.908 0 0-.122.702-.14.852-.048.253-.197.993.87.543 1.067-.45 5.758-3.39 7.856-5.805 1.451-1.592 2.144-3.202 2.144-5z"
+                />
+                <path
+                  d="M18.676 13.702a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.711a.188.188 0 0 0-.187-.188h-2.809a.188.188 0 0 0-.187.188v4.354c0 .103.084.187.187.187h2.81v.01zM8.283 13.702a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91V9.152a.188.188 0 0 0-.188-.188h-.711a.188.188 0 0 0-.188.188v4.363c0 .103.085.187.188.187h2.809zM9.968 8.955h-.712a.188.188 0 0 0-.187.187v4.364c0 .103.084.187.187.187h.712a.188.188 0 0 0 .187-.187V9.142c.01-.103-.074-.187-.187-.187zM14.8 8.955h-.712a.188.188 0 0 0-.187.187v2.603L11.906 9.05c0-.01-.009-.01-.018-.019l-.01-.01-.01-.009h-.008l-.01-.01h-.01s-.009 0-.009-.008h-.009s-.01 0-.01-.01H11.037a.188.188 0 0 0-.188.187v4.364c0 .103.084.187.188.187h.711a.188.188 0 0 0 .187-.187V10.94l2.004 2.697c.01.018.028.037.047.046l.01.01h.047c.018 0 .027.01.046.01h.702a.188.188 0 0 0 .188-.188V9.152a.177.177 0 0 0-.178-.197z"
+                  fill="#606e78"
+                />
+              </svg>
+            </a>
+            <!-- youtube -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.youtube.com/channel/UCVrNFlaSYxbEKVAMFW6o5FQ "
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -288,16 +485,238 @@
                 />
               </svg>
             </a>
-            <!-- Line -->
+          </div>
+        </div>
+        <!-- 景點+卡片 end -->
+
+        <!-- traveler 卡片 -->
+        <div
+          class="w-[300px] h-[280px] border border-[#dee8f0] rounded-2xl space-y-4 pt-7 pb-9 px-[42px] duration-300 hover:shadow hover:-translate-y-2"
+        >
+          <a
+            class="w-[175px] h-[100px] flex items-center justify-center mx-auto"
+            href="https://www.travelerluxe.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="w-[158px] h-[44px]"
+              src="./images/icon/Logo_Traveller.svg"
+              alt=""
+            />
+          </a>
+          <p class="text-primary-light text-sm leading-[24px] text-center">
+            以優雅態度，追求有質感的旅行<br />
+            創造專屬生活風格，豐富人生高度
+          </p>
+          <div class="flex items-center justify-center space-x-[24px]">
+            <!-- facebook -->
             <a
-              class="group bg-gray-100 flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
-              href="https://line.me/R/ti/p/%40hsj8845q"
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.facebook.com/travelerluxe/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
-                class="fill-gray-500 group-hover:fill-white"
-                width="20"
-                height="20"
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m17.214 14.25.622-3.62h-3.89V8.282c0-.99.543-1.956 2.285-1.956H18V3.245S16.395 3 14.86 3c-3.204 0-5.298 1.734-5.298 4.872v2.758H6v3.62h3.562V23h4.383v-8.75h3.269z"
+                />
+              </svg>
+            </a>
+            <!-- instagram -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.instagram.com/travelerluxe/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.651 1.573c-1.117.053-1.88.231-2.547.494-.69.269-1.275.63-1.857 1.214a5.143 5.143 0 0 0-1.208 1.86c-.258.67-.434 1.433-.483 2.55-.05 1.118-.06 1.478-.055 4.33.006 2.85.018 3.208.073 4.328.053 1.117.23 1.88.493 2.547.269.69.63 1.275 1.214 1.857.584.583 1.17.94 1.863 1.208.667.258 1.431.434 2.549.483 1.117.049 1.477.06 4.328.055 2.85-.006 3.21-.018 4.33-.071 1.119-.054 1.878-.233 2.545-.493.69-.27 1.276-.63 1.858-1.215.582-.585.94-1.17 1.207-1.862.259-.668.434-1.432.483-2.549.049-1.12.06-1.478.055-4.33-.006-2.85-.018-3.208-.072-4.327-.053-1.12-.23-1.88-.492-2.548a5.156 5.156 0 0 0-1.215-1.857 5.125 5.125 0 0 0-1.862-1.208c-.668-.258-1.431-.434-2.55-.483-1.117-.048-1.476-.06-4.328-.055-2.852.006-3.209.018-4.329.072zm.123 18.982c-1.024-.044-1.58-.215-1.95-.357a3.27 3.27 0 0 1-1.21-.783 3.234 3.234 0 0 1-.787-1.206c-.144-.37-.317-.926-.365-1.95-.052-1.106-.063-1.438-.069-4.241-.006-2.804.005-3.135.053-4.242.044-1.023.215-1.58.357-1.95.19-.491.417-.84.783-1.209a3.241 3.241 0 0 1 1.206-.788c.37-.144.926-.316 1.95-.365 1.106-.052 1.438-.063 4.241-.069 2.803-.006 3.136.005 4.243.053 1.023.045 1.58.214 1.95.357.49.19.84.416 1.209.783.369.367.596.716.788 1.207.145.369.316.924.365 1.948.052 1.107.064 1.44.07 4.242.004 2.803-.006 3.135-.054 4.242-.045 1.024-.214 1.58-.357 1.95-.19.49-.417.84-.784 1.21a3.243 3.243 0 0 1-1.206.787c-.37.144-.925.316-1.948.365-1.107.052-1.439.063-4.243.07-2.804.005-3.134-.006-4.242-.054m8.56-14.167a1.26 1.26 0 1 0 2.522-.005 1.26 1.26 0 0 0-2.522.005zm-9.725 5.623a5.391 5.391 0 1 0 10.783-.021 5.392 5.392 0 1 0-10.783.02zm1.891-.004a3.5 3.5 0 1 1 7-.014 3.5 3.5 0 0 1-7 .014z"
+                />
+              </svg>
+            </a>
+            <!-- line -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://line.me/R/ti/p/%40rtp3207i"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 11.118C22 6.642 17.515 3 12 3S2 6.642 2 11.118c0 4.008 3.558 7.369 8.361 8.006.328.075.768.215.88.496.104.253.066.646.029.908 0 0-.122.702-.14.852-.048.253-.197.993.87.543 1.067-.45 5.758-3.39 7.856-5.805 1.451-1.592 2.144-3.202 2.144-5z"
+                />
+                <path
+                  d="M18.676 13.702a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.711a.188.188 0 0 0-.187-.188h-2.809a.188.188 0 0 0-.187.188v4.354c0 .103.084.187.187.187h2.81v.01zM8.283 13.702a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91V9.152a.188.188 0 0 0-.188-.188h-.711a.188.188 0 0 0-.188.188v4.363c0 .103.085.187.188.187h2.809zM9.968 8.955h-.712a.188.188 0 0 0-.187.187v4.364c0 .103.084.187.187.187h.712a.188.188 0 0 0 .187-.187V9.142c.01-.103-.074-.187-.187-.187zM14.8 8.955h-.712a.188.188 0 0 0-.187.187v2.603L11.906 9.05c0-.01-.009-.01-.018-.019l-.01-.01-.01-.009h-.008l-.01-.01h-.01s-.009 0-.009-.008h-.009s-.01 0-.01-.01H11.037a.188.188 0 0 0-.188.187v4.364c0 .103.084.187.188.187h.711a.188.188 0 0 0 .187-.187V10.94l2.004 2.697c.01.018.028.037.047.046l.01.01h.047c.018 0 .027.01.046.01h.702a.188.188 0 0 0 .188-.188V9.152a.177.177 0 0 0-.178-.197z"
+                  fill="#606e78"
+                />
+              </svg>
+            </a>
+            <!-- youtube -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.youtube.com/channel/UCbuJqTC1Lm5dCUS094SNZqg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17 4H7C4 4 2 6 2 9v6c0 3 2 5 5 5h10c3 0 5-2 5-5V9c0-3-2-5-5-5zm-3.11 9.03-2.47 1.48c-1 .6-1.82.14-1.82-1.03v-2.97c0-1.17.82-1.63 1.82-1.03l2.47 1.48c.95.58.95 1.5 0 2.07z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <!-- traveler 卡片 end -->
+
+        <!-- mook 遊卡片 -->
+        <div
+          class="w-[300px] h-[280px] border border-[#dee8f0] rounded-2xl space-y-4 pt-7 pb-9 px-[42px] duration-300 hover:shadow hover:-translate-y-2"
+        >
+          <a
+            class="w-[176px] h-[100px] flex items-center justify-center mx-auto"
+            href="https://blog.mook.com.tw/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="w-[176px] h-[70px]"
+              src="./images/icon/Logo_Mook_publishing.svg"
+              alt=""
+            />
+          </a>
+          <p class="text-primary-light text-sm leading-[24px] text-center">
+            躺著看‧坐著讀<br />
+            帶著走
+          </p>
+          <div class="flex items-center justify-center space-x-[24px]">
+            <!-- facebook -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.facebook.com/travelmook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m17.214 14.25.622-3.62h-3.89V8.282c0-.99.543-1.956 2.285-1.956H18V3.245S16.395 3 14.86 3c-3.204 0-5.298 1.734-5.298 4.872v2.758H6v3.62h3.562V23h4.383v-8.75h3.269z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <!-- mook 遊卡片 end -->
+
+        <!-- mook 玩什麼卡片 -->
+        <div
+          class="w-[300px] h-[280px] border border-[#dee8f0] rounded-2xl space-y-4 pt-7 pb-9 px-[42px] duration-300 hover:shadow hover:-translate-y-2"
+        >
+          <a
+            class="w-[175px] h-[100px] flex items-center justify-center mx-auto"
+            href="https://www.youtube.com/channel/UCZui9zjZF4s7lIscKUPgfXg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="w-[94px] h-[94px]"
+              src="./images/icon/Logo_Mook_play.svg"
+              alt=""
+            />
+          </a>
+          <p class="text-primary-light text-sm leading-[24px] text-center">
+            我是你的雲端領隊<br />
+            用影片帶你環遊世界
+          </p>
+          <div class="flex items-center justify-center space-x-[24px]">
+            <!-- facebook -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.facebook.com/Mook%E7%8E%A9%E4%BB%80%E9%BA%BC-105156907630107"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m17.214 14.25.622-3.62h-3.89V8.282c0-.99.543-1.956 2.285-1.956H18V3.245S16.395 3 14.86 3c-3.204 0-5.298 1.734-5.298 4.872v2.758H6v3.62h3.562V23h4.383v-8.75h3.269z"
+                />
+              </svg>
+            </a>
+            <!-- instagram -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.instagram.com/travelmook/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.651 1.573c-1.117.053-1.88.231-2.547.494-.69.269-1.275.63-1.857 1.214a5.143 5.143 0 0 0-1.208 1.86c-.258.67-.434 1.433-.483 2.55-.05 1.118-.06 1.478-.055 4.33.006 2.85.018 3.208.073 4.328.053 1.117.23 1.88.493 2.547.269.69.63 1.275 1.214 1.857.584.583 1.17.94 1.863 1.208.667.258 1.431.434 2.549.483 1.117.049 1.477.06 4.328.055 2.85-.006 3.21-.018 4.33-.071 1.119-.054 1.878-.233 2.545-.493.69-.27 1.276-.63 1.858-1.215.582-.585.94-1.17 1.207-1.862.259-.668.434-1.432.483-2.549.049-1.12.06-1.478.055-4.33-.006-2.85-.018-3.208-.072-4.327-.053-1.12-.23-1.88-.492-2.548a5.156 5.156 0 0 0-1.215-1.857 5.125 5.125 0 0 0-1.862-1.208c-.668-.258-1.431-.434-2.55-.483-1.117-.048-1.476-.06-4.328-.055-2.852.006-3.209.018-4.329.072zm.123 18.982c-1.024-.044-1.58-.215-1.95-.357a3.27 3.27 0 0 1-1.21-.783 3.234 3.234 0 0 1-.787-1.206c-.144-.37-.317-.926-.365-1.95-.052-1.106-.063-1.438-.069-4.241-.006-2.804.005-3.135.053-4.242.044-1.023.215-1.58.357-1.95.19-.491.417-.84.783-1.209a3.241 3.241 0 0 1 1.206-.788c.37-.144.926-.316 1.95-.365 1.106-.052 1.438-.063 4.241-.069 2.803-.006 3.136.005 4.243.053 1.023.045 1.58.214 1.95.357.49.19.84.416 1.209.783.369.367.596.716.788 1.207.145.369.316.924.365 1.948.052 1.107.064 1.44.07 4.242.004 2.803-.006 3.135-.054 4.242-.045 1.024-.214 1.58-.357 1.95-.19.49-.417.84-.784 1.21a3.243 3.243 0 0 1-1.206.787c-.37.144-.925.316-1.948.365-1.107.052-1.439.063-4.243.07-2.804.005-3.134-.006-4.242-.054m8.56-14.167a1.26 1.26 0 1 0 2.522-.005 1.26 1.26 0 0 0-2.522.005zm-9.725 5.623a5.391 5.391 0 1 0 10.783-.021 5.392 5.392 0 1 0-10.783.02zm1.891-.004a3.5 3.5 0 1 1 7-.014 3.5 3.5 0 0 1-7 .014z"
+                />
+              </svg>
+            </a>
+            <!-- youtube -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.youtube.com/channel/UCZui9zjZF4s7lIscKUPgfXg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17 4H7C4 4 2 6 2 9v6c0 3 2 5 5 5h10c3 0 5-2 5-5V9c0-3-2-5-5-5zm-3.11 9.03-2.47 1.48c-1 .6-1.82.14-1.82-1.03v-2.97c0-1.17.82-1.63 1.82-1.03l2.47 1.48c.95.58.95 1.5 0 2.07z"
+                />
+              </svg>
+            </a>
+            <!-- groups -->
+            <a
+              class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-light duration-200 hover:bg-secondary-blue"
+              href="https://www.facebook.com/groups/730841884441194 "
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                class="w-6 h-6 fill-current text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -305,1531 +724,220 @@
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
-                  d="M22 11.118C22 6.642 17.515 3 12 3S2 6.642 2 11.118c0 4.008 3.558 7.369 8.361 8.006.328.075.768.215.88.496.104.253.066.646.029.908 0 0-.122.702-.14.852l-.003.01c-.048.261-.181.977.873.533 1.067-.45 5.758-3.39 7.856-5.805 1.451-1.592 2.144-3.202 2.144-5zm-3.324 2.584a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.711a.188.188 0 0 0-.187-.188h-2.809a.188.188 0 0 0-.187.188v4.354c0 .103.084.187.187.187h2.809v.01zM8.47 13.515a.188.188 0 0 1-.187.187h-2.81a.188.188 0 0 1-.186-.187V9.152c0-.103.084-.188.187-.188h.711c.103 0 .188.085.188.188v3.464h1.91c.103 0 .187.084.187.187v.712zm1.498-4.56h-.711a.188.188 0 0 0-.188.187v4.364c0 .103.085.187.188.187h.711a.188.188 0 0 0 .187-.187V9.142c.01-.103-.074-.187-.187-.187zm4.12 0h.712c.103 0 .187.084.177.197v4.363a.188.188 0 0 1-.187.187h-.702c-.01 0-.016-.002-.023-.004a.068.068 0 0 0-.024-.005h-.047l-.009-.01a.113.113 0 0 1-.047-.046l-2.004-2.697v2.594a.188.188 0 0 1-.187.187h-.711a.188.188 0 0 1-.188-.187V9.17c0-.103.085-.187.188-.187h.777c0 .01.01.01.01.01h.008c0 .009.01.009.01.009h.01l.008.01h.01l.019.018c.003.004.007.006.01.008.005.003.008.005.008.01l1.995 2.697V9.142c0-.103.084-.187.187-.187z"
+                  d="M17.887 12.146a.75.75 0 0 1-.103-1.493 2.133 2.133 0 0 0 1.827-2.1 2.115 2.115 0 0 0-1.78-2.093.75.75 0 0 1 .245-1.48 3.611 3.611 0 0 1 3.035 3.576 3.642 3.642 0 0 1-3.12 3.584.737.737 0 0 1-.104.006z"
                 />
-              </svg>
-            </a>
-          </div>
-          <!-- social media end -->
-        </div>
-      </div>
-    </div>
-    <div
-      id="navbarWrapper"
-      class="xl:h-auto h-full xl:visible invisible !border-b border-gray-200 xl:mt-[80px] mt-0 xl:bg-white bg-light xl:static fixed top-0 right-0 xl:w-auto w-4/5 z-20 xl:duration-0 duration-200 xl:translate-x-0 translate-x-full xl:before:content-none before:content-[''] before:w-screen before:h-full before:absolute before:inset-0"
-    >
-      <!-- navbar -->
-      <div
-        class="navbar splide max-w-[1100px] mx-auto flex items-center xl:h-auto h-full"
-      >
-        <!-- 左右按鈕 -->
-        <div class="splide__arrows splide__arrows--ltr">
-          <button
-            class="!bg-transparent !bg-gradient-to-l from-transparent to-white !rounded-none !opacity-100 !w-24 !h-10 !left-0 xl:!flex !justify-start !hidden disabled:!hidden splide__arrow splide__arrow--prev"
-            type="button"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#kft993jrqa)">
-                <path
-                  d="M8.97 19.53a.75.75 0 0 1-.073-.976l.073-.084L15.439 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084a.75.75 0 0 1 .976-.073l.084.073 7 7a.75.75 0 0 1 .073.976l-.073.084-7 7a.75.75 0 0 1-1.06 0z"
-                  fill="#000"
-                />
-              </g>
-              <defs>
-                <clipPath id="kft993jrqa">
-                  <path fill="#fff" d="M0 0h24v24H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </button>
-          <button
-            class="!bg-transparent !bg-gradient-to-r from-transparent to-white !rounded-none !opacity-100 !w-24 !h-10 !right-0 xl:!flex !justify-end !hidden disabled:!hidden splide__arrow splide__arrow--next"
-            type="button"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#kft993jrqa)">
-                <path
-                  d="M8.97 19.53a.75.75 0 0 1-.073-.976l.073-.084L15.439 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084a.75.75 0 0 1 .976-.073l.084.073 7 7a.75.75 0 0 1 .073.976l-.073.084-7 7a.75.75 0 0 1-1.06 0z"
-                  fill="#000"
-                />
-              </g>
-              <defs>
-                <clipPath id="kft993jrqa">
-                  <path fill="#fff" d="M0 0h24v24H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </button>
-        </div>
-        <div
-          class="splide__track xl:w-auto w-full xl:!overflow-hidden !overflow-y-auto xl:h-auto h-full"
-        >
-          <ul
-            class="splide__list relative xl:!pt-0 !pt-14 xl:!pb-0 xl:!overflow-y-visible !overflow-y-auto xl:h-auto"
-          >
-            <!-- tag, active 效果加上 !text-primary-dark (可跑迴圈) -->
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark !text-primary-dark"
-                href="#"
-              >
-                <!-- 第一個 tag 是 xl:pr-5 其餘都是 xl:px-5 -->
-                <span class="xl:pr-5 inline-block">1. 熱話題</span>
-              </a>
-            </li>
-            <!-- tag end -->
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">2. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">3. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">4. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">5. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">6. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">7. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">8. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">9. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">10. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">11. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">12. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">13. 熱話題</span>
-              </a>
-            </li>
-            <li class="splide__slide navItem xl:px-0 px-8 z-0">
-              <a
-                class="xl:inline-block block py-4 text-dark text-base xl:leading-[20px] leading-[24px] border-b-2 xl:border-b-transparent border-gray-200 duration-200 hover:text-primary-dark hover:xl:border-b-primary-dark"
-                href="#"
-              >
-                <span class="xl:px-5 inline-block">14. 熱話題</span>
-              </a>
-            </li>
-            <li
-              style="position: sticky; position: -webkit-sticky"
-              class="xl:hidden flex items-center justify-center space-x-6 py-[6px] sticky bottom-0 bg-primary-dark w-full z-10"
-            >
-              <!-- Facebook -->
-              <a
-                class="p-[6px]"
-                href="https://www.facebook.com/tripass.net"
-                target="_blank"
-              >
-                <svg
-                  class="fill-white"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="m17.214 14.25.622-3.62h-3.89V8.282c0-.99.543-1.956 2.285-1.956H18V3.245S16.395 3 14.86 3c-3.204 0-5.298 1.734-5.298 4.872v2.758H6v3.62h3.562V23h4.383v-8.75h3.269z"
-                  />
-                </svg>
-              </a>
-              <!-- Instagram -->
-              <a
-                class="p-[6px]"
-                href="https://www.instagram.com/mook_travel_plus/"
-                target="_blank"
-              >
-                <svg
-                  class="fill-white"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7.651 1.573c-1.117.053-1.88.231-2.547.494-.69.269-1.275.63-1.857 1.214a5.143 5.143 0 0 0-1.208 1.86c-.258.67-.434 1.433-.483 2.55-.05 1.118-.06 1.478-.055 4.33.006 2.85.018 3.208.073 4.328.053 1.117.23 1.88.493 2.547.269.69.63 1.275 1.214 1.857.584.583 1.17.94 1.863 1.208.667.258 1.431.434 2.549.483 1.117.049 1.477.06 4.328.055 2.85-.006 3.21-.018 4.33-.071 1.119-.054 1.878-.233 2.545-.493.69-.27 1.276-.63 1.858-1.215.582-.585.94-1.17 1.207-1.862.259-.668.434-1.432.483-2.549.049-1.12.06-1.478.055-4.33-.006-2.85-.018-3.208-.072-4.327-.053-1.12-.23-1.88-.492-2.548a5.156 5.156 0 0 0-1.215-1.857 5.125 5.125 0 0 0-1.862-1.208c-.668-.258-1.431-.434-2.55-.483-1.117-.048-1.476-.06-4.328-.055-2.852.006-3.209.018-4.329.072zm.123 18.982c-1.024-.044-1.58-.215-1.95-.357a3.27 3.27 0 0 1-1.21-.783 3.234 3.234 0 0 1-.787-1.206c-.144-.37-.317-.926-.365-1.95-.052-1.106-.063-1.438-.069-4.241-.006-2.804.005-3.135.053-4.242.044-1.023.215-1.58.357-1.95.19-.491.417-.84.783-1.209a3.241 3.241 0 0 1 1.206-.788c.37-.144.926-.316 1.95-.365 1.106-.052 1.438-.063 4.241-.069 2.803-.006 3.136.005 4.243.053 1.023.045 1.58.214 1.95.357.49.19.84.416 1.209.783.369.367.596.716.788 1.207.145.369.316.924.365 1.948.052 1.107.064 1.44.07 4.242.004 2.803-.006 3.135-.054 4.242-.045 1.024-.214 1.58-.357 1.95-.19.49-.417.84-.784 1.21a3.243 3.243 0 0 1-1.206.787c-.37.144-.925.316-1.948.365-1.107.052-1.439.063-4.243.07-2.804.005-3.134-.006-4.242-.054m8.56-14.167a1.26 1.26 0 1 0 2.522-.005 1.26 1.26 0 0 0-2.522.005zm-9.725 5.623a5.391 5.391 0 1 0 10.783-.021 5.392 5.392 0 1 0-10.783.02zm1.891-.004a3.5 3.5 0 1 1 7-.014 3.5 3.5 0 0 1-7 .014z"
-                  />
-                </svg>
-              </a>
-              <!-- Youtube -->
-              <a
-                class="p-[6px]"
-                href="https://www.youtube.com/channel/UCVrNFlaSYxbEKVAMFW6o5FQ "
-                target="_blank"
-              >
-                <svg
-                  class="fill-white"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17 4H7C4 4 2 6 2 9v6c0 3 2 5 5 5h10c3 0 5-2 5-5V9c0-3-2-5-5-5zm-3.11 9.03-2.47 1.48c-1 .6-1.82.14-1.82-1.03v-2.97c0-1.17.82-1.63 1.82-1.03l2.47 1.48c.95.58.95 1.5 0 2.07z"
-                  />
-                </svg>
-              </a>
-              <!-- Line -->
-              <a
-                class="p-[6px]"
-                href="https://line.me/R/ti/p/%40hsj8845q"
-                target="_blank"
-              >
-                <svg
-                  class="fill-white"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <mask
+                  id="cqo1tsja4a"
+                  style="mask-type: alpha"
+                  maskUnits="userSpaceOnUse"
+                  x="18"
+                  y="14"
+                  width="5"
+                  height="5"
                 >
                   <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
-                    d="M22 11.118C22 6.642 17.515 3 12 3S2 6.642 2 11.118c0 4.008 3.558 7.369 8.361 8.006.328.075.768.215.88.496.104.253.066.646.029.908 0 0-.122.702-.14.852l-.003.01c-.048.261-.181.977.873.533 1.067-.45 5.758-3.39 7.856-5.805 1.451-1.592 2.144-3.202 2.144-5zm-3.324 2.584a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.711a.188.188 0 0 0-.187-.188h-2.809a.188.188 0 0 0-.187.188v4.354c0 .103.084.187.187.187h2.809v.01zM8.47 13.515a.188.188 0 0 1-.187.187h-2.81a.188.188 0 0 1-.186-.187V9.152c0-.103.084-.188.187-.188h.711c.103 0 .188.085.188.188v3.464h1.91c.103 0 .187.084.187.187v.712zm1.498-4.56h-.711a.188.188 0 0 0-.188.187v4.364c0 .103.085.187.188.187h.711a.188.188 0 0 0 .187-.187V9.142c.01-.103-.074-.187-.187-.187zm4.12 0h.712c.103 0 .187.084.177.197v4.363a.188.188 0 0 1-.187.187h-.702c-.01 0-.016-.002-.023-.004a.068.068 0 0 0-.024-.005h-.047l-.009-.01a.113.113 0 0 1-.047-.046l-2.004-2.697v2.594a.188.188 0 0 1-.187.187h-.711a.188.188 0 0 1-.188-.187V9.17c0-.103.085-.187.188-.187h.777c0 .01.01.01.01.01h.008c0 .009.01.009.01.009h.01l.008.01h.01l.019.018c.003.004.007.006.01.008.005.003.008.005.008.01l1.995 2.697V9.142c0-.103.084-.187.187-.187z"
+                    d="M18.978 14.002h3.794v4.53h-3.794v-4.53z"
                   />
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- navbar end -->
-    </div>
-    <!-- 陰影 -->
-    <div
-      id="menuShadow"
-      class="invisible opacity-0 bg-black w-full h-full fixed inset-0 duration-200 z-0"
-    ></div>
-    <!-- 陰影 end -->
-  </div>
-</header>
-
-    <main
-      class="container mx-auto xl:pb-[72px] xl:pt-6 pb-12 xl:mt-0 mt-[56px] xl:min-h-[calc(100vh-292px)]"
-    >
-      <!-- 大輪播 -->
-      <section
-        class="main-banner splide w-full h-full sm:aspect-[1100/425] aspect-[390/220]"
-      >
-        <!-- 左右按鈕 -->
-        <div class="splide__arrows splide__arrows--ltr">
-          <button
-            class="!bg-white !opacity-100 !w-10 !h-10 shadow-16 !left-[-25px] xl:!flex !hidden splide__arrow splide__arrow--prev"
-            type="button"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#kft993jrqa)">
+                </mask>
+                <g mask="url(#cqo1tsja4a)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M20.861 18.531a.75.75 0 0 1-.267-1.45c.678-.259.678-.544.678-.68 0-.439-.557-.745-1.655-.909a.752.752 0 0 1-.63-.854.755.755 0 0 1 .853-.63c2.423.363 2.932 1.501 2.932 2.392 0 .544-.214 1.537-1.644 2.082a.759.759 0 0 1-.267.05z"
+                  />
+                </g>
                 <path
-                  d="M8.97 19.53a.75.75 0 0 1-.073-.976l.073-.084L15.439 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084a.75.75 0 0 1 .976-.073l.084.073 7 7a.75.75 0 0 1 .073.976l-.073.084-7 7a.75.75 0 0 1-1.06 0z"
-                  fill="#000"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.887 15.914c-2.376 0-5.21.292-5.21 1.682 0 1.401 2.834 1.695 5.21 1.695s5.208-.291 5.208-1.678c0-1.404-2.832-1.699-5.208-1.699zm0 4.877c-1.66 0-6.71 0-6.71-3.195 0-3.182 5.05-3.182 6.71-3.182 1.659 0 6.708 0 6.708 3.199 0 3.178-4.873 3.178-6.708 3.178zM11.887 5.5a3.072 3.072 0 0 0-3.068 3.069c-.003.82.31 1.587.886 2.166.575.579 1.34.9 2.157.903l.025.75v-.75a3.072 3.072 0 0 0 3.069-3.069 3.073 3.073 0 0 0-3.07-3.069zm0 7.638h-.027a4.52 4.52 0 0 1-3.22-1.346A4.518 4.518 0 0 1 7.32 8.566 4.573 4.573 0 0 1 11.887 4c2.52 0 4.569 2.05 4.569 4.569a4.574 4.574 0 0 1-4.57 4.569zM5.886 12.146a.737.737 0 0 1-.104-.007 3.641 3.641 0 0 1-3.12-3.581A3.612 3.612 0 0 1 5.699 4.98a.75.75 0 0 1 .244 1.48 2.116 2.116 0 0 0-1.78 2.096 2.132 2.132 0 0 0 1.827 2.098.75.75 0 0 1-.103 1.492zM2.912 18.531a.759.759 0 0 1-.267-.049C1.215 17.936 1 16.943 1 16.4c0-.89.51-2.029 2.933-2.392a.755.755 0 0 1 .853.63.752.752 0 0 1-.63.854c-1.099.164-1.656.47-1.656.908 0 .137 0 .421.68.68a.75.75 0 0 1-.268 1.451z"
                 />
-              </g>
-              <defs>
-                <clipPath id="kft993jrqa">
-                  <path fill="#fff" d="M0 0h24v24H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </button>
-          <button
-            class="!bg-white !opacity-100 !w-10 !h-10 shadow-16 !right-[-25px] xl:!flex !hidden splide__arrow splide__arrow--next"
-            type="button"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#kft993jrqa)">
-                <path
-                  d="M8.97 19.53a.75.75 0 0 1-.073-.976l.073-.084L15.439 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084a.75.75 0 0 1 .976-.073l.084.073 7 7a.75.75 0 0 1 .073.976l-.073.084-7 7a.75.75 0 0 1-1.06 0z"
-                  fill="#000"
-                />
-              </g>
-              <defs>
-                <clipPath id="kft993jrqa">
-                  <path fill="#fff" d="M0 0h24v24H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </button>
-        </div>
-        <div class="splide__track">
-          <ul class="splide__list">
-            <!-- 輪播卡片 start (可跑迴圈) -->
-            <li class="splide__slide">
-              <a href="#">
-                <picture class="block w-full h-full">
-                  <!-- PC 圖 -->
-                  <source
-                    media="(min-width: 640px)"
-                    srcset="https://picsum.photos/id/1060/1100/425"
-                  />
-                  <!-- MB 圖 -->
-                  <img
-                    class="object-cover w-full h-full sm:aspect-[1100/425] aspect-[390/220]"
-                    src="https://picsum.photos/id/1060/390/220"
-                    alt=""
-                  />
-                </picture>
-              </a>
-            </li>
-            <!-- 輪播卡片 end -->
-            <li class="splide__slide">
-              <a href="#">
-                <picture class="block w-full h-full">
-                  <!-- PC 圖 -->
-                  <source
-                    media="(min-width: 640px)"
-                    srcset="https://picsum.photos/id/1040/1100/425"
-                  />
-                  <!-- MB 圖 -->
-                  <img
-                    class="object-cover w-full h-full sm:aspect-[1100/425] aspect-[390/220]"
-                    src="https://picsum.photos/id/1040/390/220"
-                    alt=""
-                  />
-                </picture>
-              </a>
-            </li>
-            <li class="splide__slide">
-              <a href="#">
-                <picture class="block w-full h-full">
-                  <!-- PC 圖 -->
-                  <source
-                    media="(min-width: 640px)"
-                    srcset="https://picsum.photos/id/1059/1100/425"
-                  />
-                  <!-- MB 圖 -->
-                  <img
-                    class="object-cover w-full h-full sm:aspect-[1100/425] aspect-[390/220]"
-                    src="https://picsum.photos/id/1059/390/220"
-                    alt=""
-                  />
-                </picture>
-              </a>
-            </li>
-            <li class="splide__slide">
-              <a href="#">
-                <picture class="block w-full h-full">
-                  <!-- PC 圖 -->
-                  <source
-                    media="(min-width: 640px)"
-                    srcset="https://picsum.photos/id/1067/1100/425"
-                  />
-                  <!-- MB 圖 -->
-                  <img
-                    class="object-cover w-full h-full sm:aspect-[1100/425] aspect-[390/220]"
-                    src="https://picsum.photos/id/1067/390/220"
-                    alt=""
-                  />
-                </picture>
-              </a>
-            </li>
-            <li class="splide__slide">
-              <a href="#">
-                <picture class="block w-full h-full">
-                  <!-- PC 圖 -->
-                  <source
-                    media="(min-width: 640px)"
-                    srcset="https://picsum.photos/id/119/1100/425"
-                  />
-                  <!-- MB 圖 -->
-                  <img
-                    class="object-cover w-full h-full sm:aspect-[1100/425] aspect-[390/220]"
-                    src="https://picsum.photos/id/119/390/220"
-                    alt=""
-                  />
-                </picture>
-              </a>
-            </li>
-            <li class="splide__slide">
-              <a href="#">
-                <picture class="block w-full h-full">
-                  <!-- PC 圖 -->
-                  <source
-                    media="(min-width: 640px)"
-                    srcset="https://picsum.photos/id/1018/1100/425"
-                  />
-                  <!-- MB 圖 -->
-                  <img
-                    class="object-cover w-full h-full sm:aspect-[1100/425] aspect-[390/220]"
-                    src="https://picsum.photos/id/1018/390/220"
-                    alt=""
-                  />
-                </picture>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <!-- 大輪播 end -->
-
-      <!-- 最新文章 -->
-      <section class="mt-10 xl:px-0 px-5">
-        <h2 class="inline-flex items-center space-x-1">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20.62 8.45c-1.05-4.62-5.08-6.7-8.62-6.7h-.01c-3.53 0-7.57 2.07-8.62 6.69-1.17 5.16 1.99 9.53 4.85 12.28A5.436 5.436 0 0 0 12 22.25c1.36 0 2.72-.51 3.77-1.53 2.86-2.75 6.02-7.11 4.85-12.27zM12 13.46a3.15 3.15 0 1 1 0-6.3 3.15 3.15 0 0 1 0 6.3z"
-              fill="#000"
-            />
-          </svg>
-          <span
-            class="font-bold xl:text-[22px] text-xl leading-[30px] text-dark"
-            >最新文章</span
-          >
-        </h2>
-        <div
-          class="flex xl:gap-8 overflow-x-auto xl:mt-6 mt-4 xl:grid-cols-3 flex-nowrap xl:grid xl:space-x-0 space-x-8"
-        >
-          <!-- 最新文章卡片 start (可跑迴圈) -->
-          <a class="flex flex-col flex-0 xl:max-w-full max-w-[251px]" href="#">
-            <picture class="overflow-hidden rounded inline-block" href="#">
-              <img
-                class="xl:aspect-[345/230] aspect-[251/167] object-cover w-full h-full duration-500 hover:scale-125"
-                src="./images/img-15.jpg"
-                loading="lazy"
-                alt=""
-              />
-            </picture>
-            <p
-              class="inline-block mt-3 text-lg leading-[28px] text-dark xl:mt-4 line-clamp-2 hover:underline"
-              href="#"
-            >
-              出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-            </p>
-            <p
-              class="text-light-dark text-base leading-[24px] font-light xl:line-clamp-2 line-clamp-3 xl:mt-2 mt-[6px]"
-            >
-              土耳其近日開放國境管制，加上土耳其里拉匯率走低，旅行土耳其正是時候；土耳其航空與雄獅旅遊合作，推出抗疫不漲價的機加酒專案，不僅可入住五星飯店，也能暢玩伊斯坦堡與卡帕多其亞兩大城，旅客還可享45美元加購當地7日遊的超值行程，如此優惠的機加酒方案，景編很推薦喔！
-            </p>
-          </a>
-          <!-- 最新文章卡片 end -->
-          <a class="flex flex-col flex-0 xl:max-w-full max-w-[251px]" href="#">
-            <picture class="overflow-hidden rounded inline-block" href="#">
-              <img
-                class="xl:aspect-[345/230] aspect-[251/167] object-cover w-full h-full duration-500 hover:scale-125"
-                src="./images/img-14.jpg"
-                loading="lazy"
-                alt=""
-              />
-            </picture>
-            <p
-              class="inline-block mt-3 text-lg leading-[28px] text-dark xl:mt-4 line-clamp-2 hover:underline"
-              href="#"
-            >
-              出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-            </p>
-            <p
-              class="text-light-dark text-base leading-[24px] font-light xl:line-clamp-2 line-clamp-3 xl:mt-2 mt-[6px]"
-            >
-              土耳其近日開放國境管制，加上土耳其里拉匯率走低，旅行土耳其正是時候；土耳其航空與雄獅旅遊合作，推出抗疫不漲價的機加酒專案，不僅可入住五星飯店，也能暢玩伊斯坦堡與卡帕多其亞兩大城，旅客還可享45美元加購當地7日遊的超值行程，如此優惠的機加酒方案，景編很推薦喔！
-            </p>
-          </a>
-          <a class="flex flex-col flex-0 xl:max-w-full max-w-[251px]" href="#">
-            <picture class="overflow-hidden rounded inline-block" href="#">
-              <img
-                class="xl:aspect-[345/230] aspect-[251/167] object-cover w-full h-full duration-500 hover:scale-125"
-                src="./images/img-13.jpg"
-                loading="lazy"
-                alt=""
-              />
-            </picture>
-            <p
-              class="inline-block mt-3 text-lg leading-[28px] text-dark xl:mt-4 line-clamp-2 hover:underline"
-              href="#"
-            >
-              出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-            </p>
-            <p
-              class="text-light-dark text-base leading-[24px] font-light xl:line-clamp-2 line-clamp-3 xl:mt-2 mt-[6px]"
-            >
-              土耳其近日開放國境管制，加上土耳其里拉匯率走低，旅行土耳其正是時候；土耳其航空與雄獅旅遊合作，推出抗疫不漲價的機加酒專案，不僅可入住五星飯店，也能暢玩伊斯坦堡與卡帕多其亞兩大城，旅客還可享45美元加購當地7日遊的超值行程，如此優惠的機加酒方案，景編很推薦喔！
-            </p>
-          </a>
-          <a class="flex flex-col flex-0 xl:max-w-full max-w-[251px]" href="#">
-            <picture class="overflow-hidden rounded inline-block" href="#">
-              <img
-                class="xl:aspect-[345/230] aspect-[251/167] object-cover w-full h-full duration-500 hover:scale-125"
-                src="./images/img-12.jpg"
-                loading="lazy"
-                alt=""
-              />
-            </picture>
-            <p
-              class="inline-block mt-3 text-lg leading-[28px] text-dark xl:mt-4 line-clamp-2 hover:underline"
-              href="#"
-            >
-              出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-            </p>
-            <p
-              class="text-light-dark text-base leading-[24px] font-light xl:line-clamp-2 line-clamp-3 xl:mt-2 mt-[6px]"
-            >
-              土耳其近日開放國境管制，加上土耳其里拉匯率走低，旅行土耳其正是時候；土耳其航空與雄獅旅遊合作，推出抗疫不漲價的機加酒專案，不僅可入住五星飯店，也能暢玩伊斯坦堡與卡帕多其亞兩大城，旅客還可享45美元加購當地7日遊的超值行程，如此優惠的機加酒方案，景編很推薦喔！
-            </p>
-          </a>
-          <a class="flex flex-col flex-0 xl:max-w-full max-w-[251px]" href="#">
-            <picture class="overflow-hidden rounded inline-block" href="#">
-              <img
-                class="xl:aspect-[345/230] aspect-[251/167] object-cover w-full h-full duration-500 hover:scale-125"
-                src="./images/img-11.jpg"
-                loading="lazy"
-                alt=""
-              />
-            </picture>
-            <p
-              class="inline-block mt-3 text-lg leading-[28px] text-dark xl:mt-4 line-clamp-2 hover:underline"
-              href="#"
-            >
-              出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-            </p>
-            <p
-              class="text-light-dark text-base leading-[24px] font-light xl:line-clamp-2 line-clamp-3 xl:mt-2 mt-[6px]"
-            >
-              土耳其近日開放國境管制，加上土耳其里拉匯率走低，旅行土耳其正是時候；土耳其航空與雄獅旅遊合作，推出抗疫不漲價的機加酒專案，不僅可入住五星飯店，也能暢玩伊斯坦堡與卡帕多其亞兩大城，旅客還可享45美元加購當地7日遊的超值行程，如此優惠的機加酒方案，景編很推薦喔！
-            </p>
-          </a>
-          <a class="flex flex-col flex-0 xl:max-w-full max-w-[251px]" href="#">
-            <picture class="overflow-hidden rounded inline-block" href="#">
-              <img
-                class="xl:aspect-[345/230] aspect-[251/167] object-cover w-full h-full duration-500 hover:scale-125"
-                src="./images/img-10.jpg"
-                loading="lazy"
-                alt=""
-              />
-            </picture>
-            <p
-              class="inline-block mt-3 text-lg leading-[28px] text-dark xl:mt-4 line-clamp-2 hover:underline"
-              href="#"
-            >
-              出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-            </p>
-            <p
-              class="text-light-dark text-base leading-[24px] font-light xl:line-clamp-2 line-clamp-3 xl:mt-2 mt-[6px]"
-            >
-              土耳其近日開放國境管制，加上土耳其里拉匯率走低，旅行土耳其正是時候；土耳其航空與雄獅旅遊合作，推出抗疫不漲價的機加酒專案，不僅可入住五星飯店，也能暢玩伊斯坦堡與卡帕多其亞兩大城，旅客還可享45美元加購當地7日遊的超值行程，如此優惠的機加酒方案，景編很推薦喔！
-            </p>
-          </a>
-        </div>
-        <div class="text-center xl:mt-6 mt-4">
-          <a
-            class="inline-block text-center text-sm leading-[20px] text-primary-dark border border-primary-dark rounded xl:w-[245px] w-full py-[10px] duration-200 hover:bg-primary-dark hover:text-white"
-            href="#"
-          >
-            閱讀更多
-          </a>
-        </div>
-      </section>
-      <!-- 最新文章 end -->
-
-      <!-- AD -->
-      <div class="xl:flex justify-center hidden m-10">
-        <a href="#">
-          <img src="./images/Ad-02.jpg" loading="lazy" alt="" />
-        </a>
-      </div>
-
-      <!-- banner 文 -->
-      <section
-        class="relative mt-10 before:content-[''] before:absolute before:left-0 before:top-0 xl:before:ml-0.5 before:bg-light xl:before:w-[925px] before:w-full before:h-full"
-      >
-        <div
-          class="relative flex xl:flex-row flex-col-reverse xl:pl-16 xl:pr-0 xl:py-8 px-5 py-8 xl:space-x-16"
-        >
-          <div class="flex flex-col flex-1 space-y-2 xl:py-[18px] pt-[18px]">
-            <span
-              class="xl:block hidden bg-primary-dark self-start text-sm leading-[20px] text-white rounded px-2 py-[6px]"
-              >每日精選</span
-            >
-            <a
-              class="xl:text-xl xl:leading-[32px] tracking-[0.5px] text-lg leading-[28px] text-dark font-medium line-clamp-2 hover:underline"
-              href="#"
-            >
-              茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！
-            </a>
-            <p
-              class="text-light-dark line-clamp-4 xl:leading-[32px] leading-[28px]"
-            >
-              想輕鬆走步道賞雲海大景，那就不能錯過新北坪林區的南山寺步道！這裡的雲海觀賞點可以將整片山巒與茶園的景色盡收眼底，附近小路內還有一間韓國人開的秘境餐廳，賞完景想找地方坐下來填肚子最適合了。
-            </p>
-            <a
-              class="inline-block text-center text-sm leading-[20px] text-primary-dark border border-primary-dark rounded xl:w-[135px] w-full xl:mt-2 !mt-4 py-[10px] duration-200 hover:bg-primary-dark hover:text-white"
-              href="#"
-            >
-              繼續閱讀
+              </svg>
             </a>
           </div>
-          <!-- 圖片 -->
+        </div>
+        <!-- mook 玩什麼卡片 end -->
+
+        <!-- 玩家Blog卡片 -->
+        <div
+          class="w-[300px] h-[280px] border border-[#dee8f0] rounded-2xl space-y-4 pt-7 pb-9 px-[42px] duration-300 hover:shadow hover:-translate-y-2"
+        >
           <a
-            class="relative overflow-hidden flex-1 rounded inline-block shadow-16"
-            href="#"
+            class="w-[175px] h-[100px] flex items-center justify-center mx-auto"
+            href="https://blog.mook.com.tw/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span
-              class="block xl:hidden absolute left-0 top-0 bg-primary-dark self-start text-sm leading-[20px] text-white rounded px-2 py-[6px]"
-              >每日精選</span
-            >
             <img
-              class="xl:aspect-[486/324] aspect-[350/232] object-cover w-full h-full duration-500 hover:scale-125"
-              src="./images/img-18.jpg"
-              loading="lazy"
+              class="w-[120px] h-[90px]"
+              src="./images/icon/Blog_Player.svg"
               alt=""
             />
           </a>
+          <p class="text-primary-light text-sm leading-[24px] text-center">
+            最懂你疑問的旅遊玩家<br />
+            吃喝玩樂的攻略大整理
+          </p>
+        </div>
+        <!-- 玩家Blog卡片 end -->
 
-          <!-- 影片 -->
-          <!-- <div
-            class="video xl:aspect-[486/324] aspect-[350/232] overflow-hidden flex-1 rounded inline-block shadow-16"
+        <!-- mook 玩世界卡片 -->
+        <div
+          class="w-[300px] h-[280px] border border-[#dee8f0] rounded-2xl space-y-4 pt-7 pb-9 px-[21px] duration-300 hover:shadow hover:-translate-y-2"
+        >
+          <div
+            class="w-[175px] h-[100px] flex items-center justify-center mx-auto"
           >
-            <iframe
-              width="800"
-              height="600"
-              src="https://www.youtube.com/embed/6UbFvAlqv58?controls=0"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div> -->
-        </div>
-      </section>
-      <!-- banner 文 end -->
-
-      <!-- 熱門文章 -->
-      <section
-        class="mt-10 flex xl:flex-row flex-col-reverse xl:px-0 px-5 xl:space-x-[72px] xl:space-y-0 space-y-10"
-      >
-        <!-- 左側主題 -->
-        <div class="max-w-[728px] xl:mt-0 mt-10">
-          <h2 class="inline-flex items-center space-x-1 xl:mb-6 mb-4">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.39 18.49V8.33c0-.4.12-.79.34-1.12l2.73-4.06c.43-.65 1.5-1.11 2.41-.77.98.33 1.63 1.43 1.42 2.41l-.52 3.27c-.04.3.04.57.21.78.17.19.42.31.69.31h4.11c.79 0 1.47.32 1.87.88.38.54.45 1.24.2 1.95l-2.46 7.49c-.31 1.24-1.66 2.25-3 2.25h-3.9c-.67 0-1.61-.23-2.04-.66l-1.28-.99c-.49-.37-.78-.96-.78-1.58zM5.21 6.38H4.18C2.63 6.38 2 6.98 2 8.46v10.06c0 1.48.63 2.08 2.18 2.08h1.03c1.55 0 2.18-.6 2.18-2.08V8.46c0-1.48-.63-2.08-2.18-2.08z"
-                fill="#000"
-              />
-            </svg>
-            <span
-              class="font-bold xl:text-[22px] text-xl leading-[30px] text-dark"
-              >熱門文章</span
-            >
-          </h2>
-          <div class="flex flex-col xl:space-y-8 space-y-6">
-            <!-- 熱門文章卡片 start (可跑迴圈) -->
-            <div
-              class="flex items-center xl:space-x-6 space-x-4 xl:pb-8 pb-6 border-b border-gray-200 last:!border-0"
-            >
-              <a
-                class="xl:max-w-[255px] max-w-[125px] flex-1 overflow-hidden rounded inline-block self-start"
-                href="#"
-              >
-                <img
-                  class="xl:aspect-[255/170] aspect-[125/83] object-cover w-full h-full duration-500 hover:scale-125"
-                  src="./images/img-18.jpg"
-                  loading="lazy"
-                  alt=""
-                />
-              </a>
-              <div class="flex-1">
-                <div class="flex flex-wrap divide-x divide-secondary">
-                  <!-- tag (可跑迴圈) -->
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >玩樂</a
-                  >
-                  <!-- tag end -->
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >美食</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >國內</a
-                  >
-                </div>
-                <a
-                  class="inline-block text-dark xl:text-lg xl:leading-[28px] leading-[24px] tracking-[0.5px] font-medium line-clamp-2 xl:mt-2 mt-1 hover:underline"
-                  href="#"
-                >
-                  南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！
-                </a>
-                <p
-                  class="xl:line-clamp-3 xl:block hidden xl:text-base text-sm leading-[24px] text-light-dark font-light mt-2"
-                >
-                  想輕鬆走步道賞雲海大景，那就不能錯過新北坪林區的南山寺步道！這裡的雲海觀賞點可以將整片山巒與茶園的景色盡收眼底，附近小路內還有一間韓國人開的秘境餐廳，賞完景想找地方坐下來填肚子最適合了。
-                </p>
-              </div>
-            </div>
-            <!-- 熱門文章卡片 end -->
-            <div
-              class="flex items-center xl:space-x-6 space-x-4 xl:pb-8 pb-6 border-b border-gray-200 last:!border-0"
-            >
-              <a
-                class="xl:max-w-[255px] max-w-[125px] flex-1 overflow-hidden rounded inline-block self-start"
-                href="#"
-              >
-                <img
-                  class="xl:aspect-[255/170] aspect-[125/83] object-cover w-full h-full duration-500 hover:scale-125"
-                  src="./images/img-19.jpg"
-                  loading="lazy"
-                  alt=""
-                />
-              </a>
-              <div class="flex-1">
-                <div class="flex flex-wrap divide-x divide-secondary">
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >玩樂</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >美食</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >國內</a
-                  >
-                </div>
-                <a
-                  class="inline-block text-dark xl:text-lg xl:leading-[28px] leading-[24px] tracking-[0.5px] font-medium line-clamp-2 xl:mt-2 mt-1 hover:underline"
-                  href="#"
-                >
-                  南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！
-                </a>
-                <p
-                  class="xl:line-clamp-3 xl:block hidden xl:text-base text-sm leading-[24px] text-light-dark font-light mt-2"
-                >
-                  想輕鬆走步道賞雲海大景，那就不能錯過新北坪林區的南山寺步道！這裡的雲海觀賞點可以將整片山巒與茶園的景色盡收眼底，附近小路內還有一間韓國人開的秘境餐廳，賞完景想找地方坐下來填肚子最適合了。
-                </p>
-              </div>
-            </div>
-            <div
-              class="flex items-center xl:space-x-6 space-x-4 xl:pb-8 pb-6 border-b border-gray-200 last:!border-0"
-            >
-              <a
-                class="xl:max-w-[255px] max-w-[125px] flex-1 overflow-hidden rounded inline-block self-start"
-                href="#"
-              >
-                <img
-                  class="xl:aspect-[255/170] aspect-[125/83] object-cover w-full h-full duration-500 hover:scale-125"
-                  src="./images/img-20.jpg"
-                  loading="lazy"
-                  alt=""
-                />
-              </a>
-              <div class="flex-1">
-                <div class="flex flex-wrap divide-x divide-secondary">
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >玩樂</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >美食</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >國內</a
-                  >
-                </div>
-                <a
-                  class="inline-block text-dark xl:text-lg xl:leading-[28px] leading-[24px] tracking-[0.5px] font-medium line-clamp-2 xl:mt-2 mt-1 hover:underline"
-                  href="#"
-                >
-                  南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！
-                </a>
-                <p
-                  class="xl:line-clamp-3 xl:block hidden xl:text-base text-sm leading-[24px] text-light-dark font-light mt-2"
-                >
-                  想輕鬆走步道賞雲海大景，那就不能錯過新北坪林區的南山寺步道！這裡的雲海觀賞點可以將整片山巒與茶園的景色盡收眼底，附近小路內還有一間韓國人開的秘境餐廳，賞完景想找地方坐下來填肚子最適合了。
-                </p>
-              </div>
-            </div>
-            <div
-              class="flex items-center xl:space-x-6 space-x-4 xl:pb-8 pb-6 border-b border-gray-200 last:!border-0"
-            >
-              <a
-                class="xl:max-w-[255px] max-w-[125px] flex-1 overflow-hidden rounded inline-block self-start"
-                href="#"
-              >
-                <img
-                  class="xl:aspect-[255/170] aspect-[125/83] object-cover w-full h-full duration-500 hover:scale-125"
-                  src="./images/img-22.jpg"
-                  loading="lazy"
-                  alt=""
-                />
-              </a>
-              <div class="flex-1">
-                <div class="flex flex-wrap divide-x divide-secondary">
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >玩樂</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >美食</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >國內</a
-                  >
-                </div>
-                <a
-                  class="inline-block text-dark xl:text-lg xl:leading-[28px] leading-[24px] tracking-[0.5px] font-medium line-clamp-2 xl:mt-2 mt-1 hover:underline"
-                  href="#"
-                >
-                  南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！
-                </a>
-                <p
-                  class="xl:line-clamp-3 xl:block hidden xl:text-base text-sm leading-[24px] text-light-dark font-light mt-2"
-                >
-                  想輕鬆走步道賞雲海大景，那就不能錯過新北坪林區的南山寺步道！這裡的雲海觀賞點可以將整片山巒與茶園的景色盡收眼底，附近小路內還有一間韓國人開的秘境餐廳，賞完景想找地方坐下來填肚子最適合了。
-                </p>
-              </div>
-            </div>
-            <div
-              class="flex items-center xl:space-x-6 space-x-4 xl:pb-8 pb-6 border-b border-gray-200 last:!border-0"
-            >
-              <a
-                class="xl:max-w-[255px] max-w-[125px] flex-1 overflow-hidden rounded inline-block self-start"
-                href="#"
-              >
-                <img
-                  class="xl:aspect-[255/170] aspect-[125/83] object-cover w-full h-full duration-500 hover:scale-125"
-                  src="./images/img-17.jpg"
-                  loading="lazy"
-                  alt=""
-                />
-              </a>
-              <div class="flex-1">
-                <div class="flex flex-wrap divide-x divide-secondary">
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >玩樂</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >美食</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >國內</a
-                  >
-                </div>
-                <a
-                  class="inline-block text-dark xl:text-lg xl:leading-[28px] leading-[24px] tracking-[0.5px] font-medium line-clamp-2 xl:mt-2 mt-1 hover:underline"
-                  href="#"
-                >
-                  南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！
-                </a>
-                <p
-                  class="xl:line-clamp-3 xl:block hidden xl:text-base text-sm leading-[24px] text-light-dark font-light mt-2"
-                >
-                  想輕鬆走步道賞雲海大景，那就不能錯過新北坪林區的南山寺步道！這裡的雲海觀賞點可以將整片山巒與茶園的景色盡收眼底，附近小路內還有一間韓國人開的秘境餐廳，賞完景想找地方坐下來填肚子最適合了。
-                </p>
-              </div>
-            </div>
-            <div
-              class="flex items-center xl:space-x-6 space-x-4 xl:pb-8 pb-6 border-b border-gray-200 last:!border-0"
-            >
-              <a
-                class="xl:max-w-[255px] max-w-[125px] flex-1 overflow-hidden rounded inline-block self-start"
-                href="#"
-              >
-                <img
-                  class="xl:aspect-[255/170] aspect-[125/83] object-cover w-full h-full duration-500 hover:scale-125"
-                  src="./images/img-16.jpg"
-                  loading="lazy"
-                  alt=""
-                />
-              </a>
-              <div class="flex-1">
-                <div class="flex flex-wrap divide-x divide-secondary">
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >玩樂</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >美食</a
-                  >
-                  <a
-                    class="inline-block text-secondary xl:text-sm text-xs xl:leading-[20px] leading-[18px] px-1 first:!pl-0"
-                    href="#"
-                    >國內</a
-                  >
-                </div>
-                <a
-                  class="inline-block text-dark xl:text-lg xl:leading-[28px] leading-[24px] tracking-[0.5px] font-medium line-clamp-2 xl:mt-2 mt-1 hover:underline"
-                  href="#"
-                >
-                  南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！南山寺步道順訪韓式餐廳秘境茶園雲海大景在眼前！
-                </a>
-                <p
-                  class="xl:line-clamp-3 xl:block hidden xl:text-base text-sm leading-[24px] text-light-dark font-light mt-2"
-                >
-                  想輕鬆走步道賞雲海大景，那就不能錯過新北坪林區的南山寺步道！這裡的雲海觀賞點可以將整片山巒與茶園的景色盡收眼底，附近小路內還有一間韓國人開的秘境餐廳，賞完景想找地方坐下來填肚子最適合了。
-                </p>
-              </div>
-            </div>
+            <img
+              class="w-[94px] h-[94px]"
+              src="./images/icon/Mook_World.svg"
+              alt=""
+            />
           </div>
-        </div>
-
-        <!-- 右側主題 -->
-        <div class="flex flex-col space-y-8 xl:max-w-[300px] mx-auto">
-          <!-- AD -->
-          <div class="mx-auto">
-            <!-- pc 圖片 -->
-            <a href="#">
-              <img
-                class="xl:block hidden xl:aspect-[300/598] aspect-[251/167]"
-                src="./images/Ad-07.jpg"
-                loading="lazy"
-                alt=""
-              />
-              <!-- mb 圖片 -->
-              <img
-                class="xl:hidden aspect-[300/250]"
-                src="./images/Ad-05.jpg"
-                loading="lazy"
-                alt=""
-              />
+          <p class="text-primary-light text-sm leading-[24px] text-center">
+            吃喝玩樂一指通<br />
+            不論出發前還是旅行中，走到哪看到哪
+          </p>
+          <div class="flex items-center justify-center space-x-4">
+            <!-- google play -->
+            <a
+              class="flex items-center justify-center"
+              href="https://play.google.com/store/apps/details?id=com.mook.mooktravel01"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="./images/icon/Icon_GooglePlay-B.svg" alt="" />
+            </a>
+            <!-- apple store -->
+            <a
+              class="flex items-center justify-center"
+              href="https://apps.apple.com/tw/app/mook%E7%8E%A9%E4%B8%96%E7%95%8C/id1124334221"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="./images/icon/Icon_APPStore-B.svg" alt="" />
             </a>
           </div>
-          <!-- AD -->
-          <div class="mx-auto">
-            <a href="#">
-              <img src="./images/Ad-05.jpg" loading="lazy" alt="" />
-            </a>
-          </div>
-          <div>
-            <h2 class="inline-flex items-center space-x-1">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.82 1.91H7.18c-2.12 0-3.86 1.74-3.86 3.86v14.09c0 1.8 1.29 2.56 2.87 1.69l4.88-2.71c.52-.29 1.36-.29 1.87 0l4.88 2.71c1.58.88 2.87.12 2.87-1.69V5.77c-.01-2.12-1.74-3.86-3.87-3.86zm-1.2 7.12-4 4c-.15.15-.34.22-.53.22s-.38-.07-.53-.22l-1.5-1.5a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l.97.97 3.47-3.47c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06z"
-                  fill="#000"
-                />
-              </svg>
-              <span
-                class="font-bold xl:text-[22px] text-xl leading-[30px] text-dark"
-                >主題區塊名稱</span
-              >
-            </h2>
-            <div class="grid grid-cols-1 xl:space-y-4 space-y-6 mt-4">
-              <!-- 主題區塊 start (可跑迴圈) -->
-              <div
-                class="flex space-x-3 pb-4 border-b border-gray-200 last:!border-b-0"
-              >
-                <span
-                  class="font-semibold font-inter text-gray-500 text-[22px] min-w-[11px]"
-                  >1</span
-                >
-                <a
-                  class="text-dark leading-[24px] line-clamp-2 pt-1 duration-200 hover:text-primary-dark"
-                  href="#"
-                >
-                  星宇航空 X Hello
-                  Kitty七夕限定微旅行！環島列車熱氣球一次全體驗星宇航空 X Hello
-                  Kitty七夕限定微旅行！環島列車熱氣球一次全體驗
-                </a>
-              </div>
-              <!-- 主題區塊 end -->
-              <div
-                class="flex space-x-3 pb-4 border-b border-gray-200 last:!border-b-0"
-              >
-                <span
-                  class="font-semibold font-inter text-gray-500 text-[22px] min-w-[11px]"
-                  >2</span
-                >
-                <a
-                  class="text-dark leading-[24px] line-clamp-2 pt-1 duration-200 hover:text-primary-dark"
-                  href="#"
-                >
-                  200年古道小火車美景！塘湖步道秘境級O形縱走
-                </a>
-              </div>
-              <div
-                class="flex space-x-3 pb-4 border-b border-gray-200 last:!border-b-0"
-              >
-                <span
-                  class="font-semibold font-inter text-gray-500 text-[22px] min-w-[11px]"
-                  >3</span
-                >
-                <a
-                  class="text-dark leading-[24px] line-clamp-2 pt-1 duration-200 hover:text-primary-dark"
-                  href="#"
-                >
-                  小百岳森林空靈美境！都蘭山步道走訪部落聖山
-                </a>
-              </div>
-              <div
-                class="flex space-x-3 pb-4 border-b border-gray-200 last:!border-b-0"
-              >
-                <span
-                  class="font-semibold font-inter text-gray-500 text-[22px] min-w-[11px]"
-                  >4</span
-                >
-                <a
-                  class="text-dark leading-[24px] line-clamp-2 pt-1 duration-200 hover:text-primary-dark"
-                  href="#"
-                >
-                  向日葵奇幻鏡屋新場景！梵谷光影體驗展暑期必訪
-                </a>
-              </div>
-              <div
-                class="flex space-x-3 pb-4 border-b border-gray-200 last:!border-b-0"
-              >
-                <span
-                  class="font-semibold font-inter text-gray-500 text-[22px] min-w-[11px]"
-                  >5</span
-                >
-                <a
-                  class="text-dark leading-[24px] line-clamp-2 pt-1 duration-200 hover:text-primary-dark"
-                  href="#"
-                >
-                  彩虹斗笠步道必拍！桃園蓮花季五大造景賞花美拍
-                </a>
-              </div>
-            </div>
-
-            <div class="text-center mt-4">
-              <a
-                class="inline-block text-center text-sm leading-[20px] text-primary-dark border border-primary-dark rounded w-full py-[10px] duration-200 hover:bg-primary-dark hover:text-white"
-                href="#"
-              >
-                閱讀更多
-              </a>
-            </div>
-          </div>
         </div>
-      </section>
-      <!-- 熱門文章 end -->
-
-      <!-- AD -->
-      <div class="xl:max-w-[970px] max-w-[300px] mx-auto mt-10">
-        <a href="#">
-          <!-- pc 圖片 -->
-          <img
-            class="xl:block hidden xl:aspect-[970/250] aspect-[251/167]"
-            src="./images/Ad-01.jpg"
-            loading="lazy"
-            alt=""
-          />
-          <!-- mb 圖片 -->
-          <img
-            class="xl:hidden aspect-[300/250]"
-            src="./images/Ad-03.jpg"
-            loading="lazy"
-            alt=""
-          />
-        </a>
+        <!-- mook 玩什麼卡片 end -->
       </div>
+    </section>
 
-      <!-- 景編精選 -->
-      <section class="mt-10 xl:px-0 px-5">
-        <h2 class="inline-flex items-center space-x-1">
+    <!-- 聯絡我們 -->
+    <section
+      class="bg-secondary-grayBlue py-6 xl:px-0 px-6 xl:mb-16 mb-12"
+      data-aos="fade-up"
+      data-aos-duration="2000"
+    >
+      <div class="flex flex-col items-center space-y-4 text-center">
+        <p
+          class="text-primary xl:text-base text-sm xl:leading-[32px] leading-[24px]"
+        >
+          墨刻整合傳媒廣告團隊為您提供全方位的廣告行銷服務，創造最佳效益。歡迎與我們聯繫！
+        </p>
+        <a
+          class="group flex items-center justify-center w-[146px] h-[44px] border border-primary rounded-full space-x-[6px] text-sm leading-[16px] duration-200 hover:text-white hover:bg-primary"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg
-            width="24"
-            height="24"
+            class="w-6 h-6 stroke-current"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M11.997 2.25c.986 0 1.75.744 2.23 1.717l1.586 3.199c.042.085.146.216.311.338.165.123.321.187.417.203l2.87.48c1.05.177 1.953.696 2.248 1.62.294.922-.14 1.869-.895 2.625l-.001.001-2.23 2.249a1.073 1.073 0 0 0-.23.443c-.06.208-.064.393-.039.506l.639 2.783c.266 1.164.186 2.355-.669 2.983-.858.631-2.016.343-3.039-.266l-2.69-1.607a1.034 1.034 0 0 0-.504-.111c-.222 0-.406.052-.512.113l-.002.002-2.685 1.602c-1.022.612-2.179.895-3.037.264-.854-.629-.938-1.817-.671-2.98l.638-2.783a1.114 1.114 0 0 0-.038-.506 1.073 1.073 0 0 0-.23-.443l-2.233-2.25c-.75-.757-1.182-1.703-.89-2.624.292-.924 1.193-1.444 2.244-1.62l2.869-.481c.09-.016.245-.079.409-.202a1.06 1.06 0 0 0 .31-.34l.003-.005 1.585-3.195c.485-.972 1.25-1.715 2.236-1.715z"
-              fill="#000"
+              d="m17.41 9.111-4.111 3.31c-.779.61-1.87.61-2.648 0l-4.147-3.31"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M7.404 3.75h9.089a4.779 4.779 0 0 1 3.451 1.533 4.836 4.836 0 0 1 1.278 3.57v6.293a4.836 4.836 0 0 1-1.278 3.571 4.779 4.779 0 0 1-3.451 1.533H7.404c-2.815 0-4.712-2.29-4.712-5.104V8.854c0-2.814 1.897-5.104 4.712-5.104z"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
           </svg>
-          <span
-            class="font-bold xl:text-[22px] text-xl leading-[30px] text-dark"
-            >景編精選</span
-          >
-        </h2>
-        <div class="splide scene">
-          <!-- 左右按鈕 -->
-          <div class="splide__arrows splide__arrows--ltr">
-            <button
-              class="!bg-white !opacity-100 !w-10 !h-10 shadow-16 !left-[-25px] xl:!flex !hidden splide__arrow splide__arrow--prev"
-              type="button"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#kft993jrqa)">
-                  <path
-                    d="M8.97 19.53a.75.75 0 0 1-.073-.976l.073-.084L15.439 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084a.75.75 0 0 1 .976-.073l.084.073 7 7a.75.75 0 0 1 .073.976l-.073.084-7 7a.75.75 0 0 1-1.06 0z"
-                    fill="#000"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="kft993jrqa">
-                    <path fill="#fff" d="M0 0h24v24H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </button>
-            <button
-              class="!bg-white !opacity-100 !w-10 !h-10 shadow-16 !right-[-25px] xl:!flex !hidden splide__arrow splide__arrow--next"
-              type="button"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#kft993jrqa)">
-                  <path
-                    d="M8.97 19.53a.75.75 0 0 1-.073-.976l.073-.084L15.439 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084a.75.75 0 0 1 .976-.073l.084.073 7 7a.75.75 0 0 1 .073.976l-.073.084-7 7a.75.75 0 0 1-1.06 0z"
-                    fill="#000"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="kft993jrqa">
-                    <path fill="#fff" d="M0 0h24v24H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </button>
-          </div>
-          <div class="splide__track xl:pt-6 pt-4">
-            <ul class="splide__list">
-              <!-- 景編精選卡片 (可跑迴圈) -->
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-01.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      1. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <!-- 景編精選卡片 end -->
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-02.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      2. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-03.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      3. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-04.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      4. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-05.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      5. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-06.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      6. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-07.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      7. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="splide__slide !w-auto">
-                <a
-                  class="w-[251px] h-[244px] overflow-hidden rounded inline-block border duration-200 hover:shadow-8-16 hover:-translate-y-4"
-                  href="#"
-                >
-                  <img
-                    class="aspect-[251/167] object-cover w-full"
-                    src="./images/img-08.jpg"
-                    loading="lazy"
-                    alt=""
-                  />
-                  <div class="p-2 px-[10px] pb-3 overflow-hidden line-clamp-2">
-                    <div
-                      class="text-dark text-lg leading-[28px] tracking-[0.5px] font-medium line-clamp-2 h-[56px]"
-                    >
-                      8. 出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                      出國玩土耳其不漲價！熱氣球歐亞美景暢玩兩大城超推
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <!-- 景編精選 end -->
-    </main>
+          <span>聯絡我們</span>
+        </a>
+      </div>
+    </section>
+    <!-- 聯絡我們 end -->
 
     <!-- footer -->
-    <footer class="bg-light py-6 border-t border-t-gray-200">
-  <div class="container mx-auto">
-    <div
-      class="grid xl:grid-cols-4 grid-cols-2 xl:space-y-0 text-center divide-x divide-gray-200 mx-auto xl:max-w-[380px] max-w-[172px]"
-    >
-      <a class="text-gray-800 text-sm leading-[20px] xl:mt-0 mt-2" href="#"
-        >關於我們</a
+    <footer class="xl:py-7 py-8 border-t border-[#dee8f0]">
+      <div
+        class="max-w-5xl mx-auto flex items-center justify-between xl:flex-row flex-col-reverse"
       >
-      <a class="text-gray-800 text-sm leading-[20px] xl:mt-0 mt-2" href="#"
-        >企業合作</a
-      >
-      <a
-        class="text-gray-800 text-sm leading-[20px] xl:mt-0 mt-2 xl:!border-l !border-0"
-        href="#"
-        >著作權聲明</a
-      >
-      <a class="text-gray-800 text-sm leading-[20px] xl:mt-0 mt-2" href="#"
-        >隱私權聲明</a
-      >
-    </div>
-
-    <!-- social media -->
-    <div class="grid grid-cols-4 text-center max-w-[192px] mx-auto mt-4">
-      <!-- Facebook -->
-      <a
-        class="group bg-gray-200 mx-auto flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
-        href="#"
-      >
-        <svg
-          class="fill-gray-500 group-hover:fill-white"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <p
+          class="text-primary-light font-inter text-sm leading-[16px] xl:mt-0 mt-6"
         >
-          <path
-            d="m17.214 14.25.622-3.62h-3.89V8.282c0-.99.543-1.956 2.285-1.956H18V3.245S16.395 3 14.86 3c-3.204 0-5.298 1.734-5.298 4.872v2.758H6v3.62h3.562V23h4.383v-8.75h3.269z"
-          />
-        </svg>
-      </a>
-      <!-- Instagram -->
-      <a
-        class="group bg-gray-200 mx-auto flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
-        href="#"
-      >
-        <svg
-          class="fill-gray-500 group-hover:fill-white"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.651 1.573c-1.117.053-1.88.231-2.547.494-.69.269-1.275.63-1.857 1.214a5.143 5.143 0 0 0-1.208 1.86c-.258.67-.434 1.433-.483 2.55-.05 1.118-.06 1.478-.055 4.33.006 2.85.018 3.208.073 4.328.053 1.117.23 1.88.493 2.547.269.69.63 1.275 1.214 1.857.584.583 1.17.94 1.863 1.208.667.258 1.431.434 2.549.483 1.117.049 1.477.06 4.328.055 2.85-.006 3.21-.018 4.33-.071 1.119-.054 1.878-.233 2.545-.493.69-.27 1.276-.63 1.858-1.215.582-.585.94-1.17 1.207-1.862.259-.668.434-1.432.483-2.549.049-1.12.06-1.478.055-4.33-.006-2.85-.018-3.208-.072-4.327-.053-1.12-.23-1.88-.492-2.548a5.156 5.156 0 0 0-1.215-1.857 5.125 5.125 0 0 0-1.862-1.208c-.668-.258-1.431-.434-2.55-.483-1.117-.048-1.476-.06-4.328-.055-2.852.006-3.209.018-4.329.072zm.123 18.982c-1.024-.044-1.58-.215-1.95-.357a3.27 3.27 0 0 1-1.21-.783 3.234 3.234 0 0 1-.787-1.206c-.144-.37-.317-.926-.365-1.95-.052-1.106-.063-1.438-.069-4.241-.006-2.804.005-3.135.053-4.242.044-1.023.215-1.58.357-1.95.19-.491.417-.84.783-1.209a3.241 3.241 0 0 1 1.206-.788c.37-.144.926-.316 1.95-.365 1.106-.052 1.438-.063 4.241-.069 2.803-.006 3.136.005 4.243.053 1.023.045 1.58.214 1.95.357.49.19.84.416 1.209.783.369.367.596.716.788 1.207.145.369.316.924.365 1.948.052 1.107.064 1.44.07 4.242.004 2.803-.006 3.135-.054 4.242-.045 1.024-.214 1.58-.357 1.95-.19.49-.417.84-.784 1.21a3.243 3.243 0 0 1-1.206.787c-.37.144-.925.316-1.948.365-1.107.052-1.439.063-4.243.07-2.804.005-3.134-.006-4.242-.054m8.56-14.167a1.26 1.26 0 1 0 2.522-.005 1.26 1.26 0 0 0-2.522.005zm-9.725 5.623a5.391 5.391 0 1 0 10.783-.021 5.392 5.392 0 1 0-10.783.02zm1.891-.004a3.5 3.5 0 1 1 7-.014 3.5 3.5 0 0 1-7 .014z"
-          />
-        </svg>
-      </a>
-      <!-- Youtube -->
-      <a
-        class="group bg-gray-200 mx-auto flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
-        href="#"
-      >
-        <svg
-          class="fill-gray-500 group-hover:fill-white"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M17 4H7C4 4 2 6 2 9v6c0 3 2 5 5 5h10c3 0 5-2 5-5V9c0-3-2-5-5-5zm-3.11 9.03-2.47 1.48c-1 .6-1.82.14-1.82-1.03v-2.97c0-1.17.82-1.63 1.82-1.03l2.47 1.48c.95.58.95 1.5 0 2.07z"
-          />
-        </svg>
-      </a>
-      <!-- Line -->
-      <a
-        class="group bg-gray-200 mx-auto flex items-center justify-center rounded-full w-9 h-9 duration-200 hover:bg-primary"
-        href="#"
-      >
-        <svg
-          class="fill-gray-500 group-hover:fill-white"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M22 11.118C22 6.642 17.515 3 12 3S2 6.642 2 11.118c0 4.008 3.558 7.369 8.361 8.006.328.075.768.215.88.496.104.253.066.646.029.908 0 0-.122.702-.14.852l-.003.01c-.048.261-.181.977.873.533 1.067-.45 5.758-3.39 7.856-5.805 1.451-1.592 2.144-3.202 2.144-5zm-3.324 2.584a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.712a.188.188 0 0 0-.187-.187h-1.91v-.74h1.91a.188.188 0 0 0 .187-.187v-.711a.188.188 0 0 0-.187-.188h-2.809a.188.188 0 0 0-.187.188v4.354c0 .103.084.187.187.187h2.809v.01zM8.47 13.515a.188.188 0 0 1-.187.187h-2.81a.188.188 0 0 1-.186-.187V9.152c0-.103.084-.188.187-.188h.711c.103 0 .188.085.188.188v3.464h1.91c.103 0 .187.084.187.187v.712zm1.498-4.56h-.711a.188.188 0 0 0-.188.187v4.364c0 .103.085.187.188.187h.711a.188.188 0 0 0 .187-.187V9.142c.01-.103-.074-.187-.187-.187zm4.12 0h.712c.103 0 .187.084.177.197v4.363a.188.188 0 0 1-.187.187h-.702c-.01 0-.016-.002-.023-.004a.068.068 0 0 0-.024-.005h-.047l-.009-.01a.113.113 0 0 1-.047-.046l-2.004-2.697v2.594a.188.188 0 0 1-.187.187h-.711a.188.188 0 0 1-.188-.187V9.17c0-.103.085-.187.188-.187h.777c0 .01.01.01.01.01h.008c0 .009.01.009.01.009h.01l.008.01h.01l.019.018c.003.004.007.006.01.008.005.003.008.005.008.01l1.995 2.697V9.142c0-.103.084-.187.187-.187z"
-          />
-        </svg>
-      </a>
-    </div>
-    <!-- social media end -->
+          © 2022 MOOK All Rights Reserved.
+        </p>
+        <div class="flex space-x-[30px]">
+          <a
+            class="text-primary-light font-inter text-sm leading-[16px]"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            >著作權聲明</a
+          >
+          <a
+            class="text-primary-light font-inter text-sm leading-[16px]"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            >隱私權聲明</a
+          >
+        </div>
+      </div>
+    </footer>
+    <!-- footer end -->
 
-    <p class="text-gray-500 text-sm leading-[18px] text-center mt-4">
-      2022 景點+ All Rights Reserved
-    </p>
-  </div>
-</footer>
-
-
-    <!-- gotop -->
+    <!-- go top -->
     <button
-  id="gotop"
-  class="fixed right-6 bottom-8 bg-white flex items-center justify-center rounded-full w-[36px] h-[36px] border border-gray-200 shadow-16 opacity-0 invisible duration-200"
-  type="button"
->
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M12.025 21.5a.75.75 0 0 1-.743-.648l-.007-.102v-15a.75.75 0 0 1 1.493-.102l.007.102v15a.75.75 0 0 1-.75.75z"
-      fill="#000"
-    />
-    <path
-      d="M6.532 12.33a.75.75 0 0 1-1.135-.975l.073-.084 6.023-6.05a.75.75 0 0 1 .98-.073l.083.073 6.025 6.05a.75.75 0 0 1-.979 1.131l-.083-.073-5.494-5.516-5.493 5.516zM4.25 3.75a.75.75 0 0 1 .648-.743L5 3h14a.75.75 0 0 1 .102 1.493L19 4.5H5a.75.75 0 0 1-.75-.75z"
-      fill="#000"
-    />
-  </svg>
-</button>
+      id="gotop"
+      class="group fixed xl:right-8 right-6 bottom-8 space-y-[2px] flex flex-col items-center justify-center opacity-0 invisible duration-200"
+      type="button"
+    >
+      <div class="h-6 overflow-hidden group-hover:h-[54px] duration-200">
+        <svg
+          class="w-3 h-[54px]"
+          viewBox="0 0 12 54"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0)">
+            <line x1="6" y1="54" x2="6" y2="1" stroke="black" />
+            <path
+              d="M1.05025 6.05025L6 1.10051L10.9497 6.05025"
+              stroke="black"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0">
+              <rect
+                width="54"
+                height="12"
+                fill="white"
+                transform="translate(0 54) rotate(-90)"
+              />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <span class="text-primary font-inter font-bold text-sm leading-[16px]"
+        >TOP</span
+      >
+    </button>
+    <!-- go top end -->
 
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
