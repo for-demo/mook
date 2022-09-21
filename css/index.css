@@ -694,13 +694,19 @@ body {
 .header-scrolled {
   align-items: center !important;
   --tw-bg-opacity: 1 !important;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity)) !important;
+  background-color: rgba(239, 242, 245, var(--tw-bg-opacity)) !important;
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
 
 .header-scrolled .logo {
-  max-width: 100px !important;
+  max-width: 100px;
+}
+
+@media (min-width: 1024px) {
+  .header-scrolled .logo {
+    max-width: 165px !important;
+  }
 }
 
 .header-scrolled .menuIcon span {
@@ -1633,12 +1639,16 @@ body {
     right: 2rem;
   }
 
+  .xl\:ml-\[-15px\] {
+    margin-left: -15px;
+  }
+
   .xl\:mt-0 {
     margin-top: 0px;
   }
 
-  .xl\:mt-8 {
-    margin-top: 2rem;
+  .xl\:mt-6 {
+    margin-top: 1.5rem;
   }
 
   .xl\:mt-4 {
@@ -1786,9 +1796,9 @@ body {
     text-align: left;
   }
 
-  .xl\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
+  .xl\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .xl\:text-5xl {
@@ -1809,9 +1819,9 @@ body {
     font-size: 32px;
   }
 
-  .xl\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+  .xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .xl\:leading-\[32px\] {
