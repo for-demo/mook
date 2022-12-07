@@ -1387,12 +1387,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   .main-banner .splide__pagination__page {
     width: 10px !important;
   }
+
+  .video iframe {
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
 }
 .video iframe {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: none;
+     object-fit: none;
 }
 .news > *:not(:nth-child(3n + 3)) {
   padding-right: 2rem;

@@ -1348,14 +1348,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .article {
   margin-top: 2rem;
 }
-.article h2 {
-  margin-bottom: 2rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  line-height: 1.5;
-  --tw-text-opacity: 1;
-  color: rgb(28 27 25 / var(--tw-text-opacity));
-}
 .article p {
   font-size: 1.125rem;
   line-height: 1.75rem;

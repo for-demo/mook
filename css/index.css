@@ -1763,6 +1763,10 @@ body {
     margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
   }
 
+  .xl\:bg-fixed {
+    background-attachment: fixed;
+  }
+
   .xl\:p-0 {
     padding: 0px;
   }
