@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mook Error Page</title>
+    <link href="css/mook-error.css" rel="stylesheet" />
+    <script defer src="js/mook-error.js"></script>
+  </head>
+  <body>
+    <!-- header -->
+    <header
+      id="header"
+      class="header-scrolled fixed w-full top-0 flex justify-between items-center xl:px-10 xl:py-6 px-4 pt-[10px] pb-3 z-30 duration-200"
+    >
+      <img
+        class="logo xl:!max-w-[249px] !max-w-[100px] xl:ml-[-15px] duration-200"
+        src="./images/icon/Logo_Mook.svg"
+        alt=""
+      />
+      <button id="memuButton" class="memu relative xl:hidden" type="button">
+        <div
+          id="menuIcon"
+          class="menuIcon justify-center space-y-[6px] flex flex-col relative w-auto h-6 overflow-hidden"
+        >
+          <span
+            class="inline-block w-6 h-[2px] bg-white mt-[6px] origin-top-left"
+          ></span>
+          <span class="inline-block w-6 h-[2px] bg-white mt-[6px]"></span>
+          <span
+            class="inline-block w-6 h-[2px] bg-white mt-[6px] origin-top-right"
+          ></span>
+        </div>
+      </button>
+      <nav id="navbar" class="navbar">
+        <ul
+          class="flex xl:w-auto w-full xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-8 xl:p-0 py-8 xl:text-left text-center"
+        >
+          <!-- nav item (可跑回圈) -->
+          <li>
+            <!-- active 效果加 !text-secondary-blue -->
+            <a
+              class="xl:text-lg text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://www.mook.com.tw/article.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              >景點+</a
+            >
+          </li>
+          <!-- nav item end (可跑回圈) -->
+          <li>
+            <a
+              class="xl:text-lg text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://www.travelerluxe.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >旅人誌</a
+            >
+          </li>
+          <li>
+            <a
+              class="xl:text-lg text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://blog.mook.com.tw/book"
+              target="_blank"
+              rel="noopener noreferrer"
+              >墨刻Book</a
+            >
+          </li>
+          <li>
+            <a
+              class="xl:text-lg text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://www.youtube.com/channel/UCZui9zjZF4s7lIscKUPgfXg"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Mook玩什麼</a
+            >
+          </li>
+          <li>
+            <a
+              class="xl:text-lg text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="https://blog.mook.com.tw/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Blog玩家</a
+            >
+          </li>
+          <li>
+            <a
+              id="world"
+              class="xl:text-lg text-xl font-bold xl:leading-[32px] leading-[30px] xl:text-white text-primary xl:tracking-0 tracking-[1px] pb-1 duration-200 border-b border-transparent hover:border-white"
+              href="javascript:;"
+              >Mook玩世界</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="bg-shadow"></div>
+    </header>
+    <!-- header end -->
+
+    <main
+      class="relative xl:min-h-[calc(100vh-73px)] min-h-[calc(100vh-121px)] flex items-center justify-center"
+    >
+      <p class="text-2xl text-center">
+        404 Page Not Found<br />
+        找不到您要的頁面
+      </p>
+    </main>
+
+    <!-- footer -->
+    <footer class="xl:py-7 py-8 border-t border-[#dee8f0]">
+      <div
+        class="max-w-5xl mx-auto flex items-center justify-between xl:flex-row flex-col-reverse"
+      >
+        <p
+          class="text-primary-light font-inter text-sm leading-[16px] xl:mt-0 mt-6"
+        >
+          © 2022 MOOK All Rights Reserved.
+        </p>
+        <div class="flex space-x-[30px]">
+          <a
+            class="text-primary-light font-inter text-sm leading-[16px]"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            >著作權聲明</a
+          >
+          <a
+            class="text-primary-light font-inter text-sm leading-[16px]"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            >隱私權聲明</a
+          >
+        </div>
+      </div>
+    </footer>
+    <!-- footer end -->
+  </body>
+</html>
